@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx lint-staged
+npx lint-staged || (echo "❌ ESLint 및 Prettier 오류: 코드 스타일 확인해주세요." && exit 1)
