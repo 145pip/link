@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 
 import stageZeroCoordinates from "../../data/stageZeroCoordinates.json";
 import Cube from "../objects/Cube";
+import Axis from "../objects/Axis";
 
 export default function StageZero() {
   return (
@@ -19,6 +20,7 @@ export default function StageZero() {
       <ambientLight />
       <pointLight position={[-10, -10, -10]} />
       <spotLight angle={0.25} penumbra={0.5} position={[10, 10, 5]} />
+      <Axis />
       <Physics>
         {stageZeroCoordinates.positions.map((coordinate, index) => (
           <Cube key={`stage0-cube-${index + 1}`} position={coordinate} />
