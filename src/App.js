@@ -1,8 +1,16 @@
-import "./reset.css";
-import StageZero from "./components/stages/StageZero";
+import styled from "styled-components";
 
-function App() {
-  return <StageZero />;
+import StageZero from "./components/stages/StageZero";
+import "./reset.css";
+
+export default function App() {
+  return (
+    <AppWrapper>
+      <StageZero />
+    </AppWrapper>
+  );
 }
 
-export default App;
+const AppWrapper = styled.div`
+  height: 100vh;
+`;

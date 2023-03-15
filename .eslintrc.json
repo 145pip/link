@@ -13,9 +13,7 @@
       "error",
       { "extensions": [".js", ".jsx"] }
     ],
-    "react/no-unknown-property": "off"
-  },
-  "settings": {
-    "import/core-modules": ["@react-three/cannon"]
+    "react/no-unknown-property": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }
