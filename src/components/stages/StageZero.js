@@ -20,8 +20,8 @@ export default function StageZero() {
       <pointLight position={[-10, -10, -10]} />
       <spotLight angle={0.25} penumbra={0.5} position={[10, 10, 5]} />
       <Physics>
-        {stageZeroCoordinates.positions.map((coordinate, id) => (
-          <Cube key={`stage0-cube-${id + 1}`} position={coordinate} />
+        {stageZeroCoordinates.positions.map((coordinate, index) => (
+          <Cube key={`stage0-cube-${index + 1}`} position={coordinate} />
         ))}
       </Physics>
       <OrbitControls enablePan />
