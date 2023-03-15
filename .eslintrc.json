@@ -9,6 +9,13 @@
     "quotes": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [
+      "error",
+      { "extensions": [".js", ".jsx"] }
+    ],
+    "react/no-unknown-property": "off"
+  },
+  "settings": {
+    "import/core-modules": ["@react-three/cannon"]
   }
 }
