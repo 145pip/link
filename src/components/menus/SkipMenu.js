@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { ReactComponent as SkipArrow } from "../../assets/icon/SkipArrow.svg";
 
-export default function SkipButton() {
+export default function SkipMenu() {
   return <StyledSkipArrow />;
 }
 
