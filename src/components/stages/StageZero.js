@@ -1,4 +1,4 @@
-import { OrbitControls, OrthographicCamera } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "@react-three/fiber";
 
@@ -7,33 +7,35 @@ import Cube from "../objects/Cube";
 import Axis from "../objects/Axis";
 import LinkEdge from "../objects/LinkEdge";
 import PlayerObject from "../objects/PlayerObject";
+import AutoSnap from "../../utils/AutoSnap";
 
 export default function StageZero() {
   return (
-    <Canvas>
+    <Canvas
+      camera={{
+        position: [15, 15, 15],
+        near: 0.01,
+        far: 1000,
+        fov: 50,
+        zoom: 1,
+      }}
+    >
       <ambientLight />
       <pointLight position={[-10, -10, -10]} />
       <spotLight angle={0.25} penumbra={0.5} position={[10, 10, 5]} />
       <Axis />
-      <OrthographicCamera
-        makeDefault
-        position={[15, 15, 15]}
-        fov={50}
-        near={0.01}
-        far={1000}
-        zoom={60}
-      />
       <Physics>
-        {stageZeroCoordinates.cubes.positions.map((coordinate, index) => (
-          <Cube key={`stage0-cube-${index + 1}`} position={coordinate} />
+        {stageZeroCoordinates.cubes.positions.map((position, index) => (
+          <Cube key={`stage0-cube-${index + 1}`} position={position} />
         ))}
-        {stageZeroCoordinates.linkEdges.map((coordinate, index) => (
-          <LinkEdge
-            key={`stage0-linkEdge-${index + 1}`}
-            edgeFrom={coordinate.edgeFrom}
-            edgeTo={coordinate.edgeTo}
-            color={coordinate.color}
-            thickness={coordinate.thickness}
+        {stageZeroCoordinates.linkEdges.map((linkEdge, index) => (
+          <LinkEdge key={`stage0-link-edge-${index + 1}`} linkEdge={linkEdge} />
+        ))}
+        {stageZeroCoordinates.linkEdges.map((linkEdge, index) => (
+          <AutoSnap
+            key={`stage0-auto-snap-${index + 1}`}
+            linkSensitivity={0.05}
+            linkEdge={linkEdge}
           />
         ))}
       </Physics>
