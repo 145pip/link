@@ -1,32 +1,34 @@
 import PropTypes from "prop-types";
 import { Line } from "@react-three/drei";
 
-export default function LinkEdge({ edgeFrom, edgeTo, color, thickness }) {
+export default function LinkEdge({ linkEdge }) {
   return (
     <>
       <Line
-        points={[edgeFrom.startingPoint, edgeFrom.endPoint]}
-        color={color}
-        linewidth={thickness}
+        points={[linkEdge.edgeFrom.pointA, linkEdge.edgeFrom.pointB]}
+        color={linkEdge.color}
+        linewidth={linkEdge.thickness}
       />
       <Line
-        points={[edgeTo.startingPoint, edgeTo.endPoint]}
-        color={color}
-        linewidth={thickness}
+        points={[linkEdge.edgeTo.pointA, linkEdge.edgeTo.pointB]}
+        color={linkEdge.color}
+        linewidth={linkEdge.thickness}
       />
     </>
   );
 }
 
 LinkEdge.propTypes = {
-  edgeFrom: PropTypes.shape({
-    startingPoint: PropTypes.arrayOf(PropTypes.number).isRequired,
-    endPoint: PropTypes.arrayOf(PropTypes.number).isRequired,
+  linkEdge: PropTypes.shape({
+    edgeFrom: PropTypes.shape({
+      pointA: PropTypes.arrayOf(PropTypes.number),
+      pointB: PropTypes.arrayOf(PropTypes.number),
+    }),
+    edgeTo: PropTypes.shape({
+      pointA: PropTypes.arrayOf(PropTypes.number),
+      pointB: PropTypes.arrayOf(PropTypes.number),
+    }),
+    color: PropTypes.string,
+    thickness: PropTypes.number,
   }).isRequired,
-  edgeTo: PropTypes.shape({
-    startingPoint: PropTypes.arrayOf(PropTypes.number).isRequired,
-    endPoint: PropTypes.arrayOf(PropTypes.number).isRequired,
-  }).isRequired,
-  color: PropTypes.string.isRequired,
-  thickness: PropTypes.number.isRequired,
 };
