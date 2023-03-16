@@ -6,7 +6,7 @@ export default function Cube(props) {
   return (
     <mesh ref={ref}>
       <boxGeometry />
-      <meshStandardMaterial />
+      <meshStandardMaterial color="rgb(51, 153, 255)" />
     </mesh>
   );
 }
