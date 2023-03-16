@@ -6,6 +6,7 @@ import stageZeroCoordinates from "../../data/stageZeroCoordinates.json";
 import Cube from "../objects/Cube";
 import Axis from "../objects/Axis";
 import LinkEdge from "../objects/LinkEdge";
+import LetterF from "../objects/letterF";
 
 export default function StageZero() {
   return (
@@ -36,6 +37,11 @@ export default function StageZero() {
           />
         ))}
       </Physics>
+      <LetterF
+        position={[0, 1, 1.5]}
+        rotation={[0, -Math.PI / 2, 0]}
+        scale={0.5}
+      />
       <OrbitControls />
     </Canvas>
   );
