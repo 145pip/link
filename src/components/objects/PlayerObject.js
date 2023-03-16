@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-export default function LetterF({ position, rotation, scale }) {
-  const gltf = useLoader(GLTFLoader, "/assets/glb/letterF.glb");
+export default function PlayerObject({ position, rotation, scale }) {
+  const gltf = useLoader(GLTFLoader, "/assets/glb/playerObject.glb");
 
   return (
     <primitive
@@ -16,7 +16,7 @@ export default function LetterF({ position, rotation, scale }) {
   );
 }
 
-LetterF.propTypes = {
+PlayerObject.propTypes = {
   position: PropTypes.arrayOf(PropTypes.number).isRequired,
   rotation: PropTypes.arrayOf(PropTypes.number).isRequired,
   scale: PropTypes.number.isRequired,
