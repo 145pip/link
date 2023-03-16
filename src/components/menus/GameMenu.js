@@ -4,7 +4,7 @@ import { ReactComponent as Reload } from "../../assets/icon/Reload.svg";
 import { ReactComponent as Sound } from "../../assets/icon/Sound.svg";
 import { ReactComponent as StageSelection } from "../../assets/icon/StageSelection.svg";
 
-export default function CommonButtons() {
+export default function GameMenu() {
   return (
     <>
       <StyledReload />
