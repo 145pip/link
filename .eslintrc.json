@@ -5,8 +5,7 @@
     "eslint:recommended",
     "plugin:import/errors",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
-    "prettier/react"
+    "plugin:prettier/recommended"
   ],
   "plugins": ["react", "prettier", "import"],
   "env": {
@@ -15,14 +14,24 @@
     "node": true
   },
   "parserOptions": {
+    "requireConfigFile": false,
     "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
+    },
+    "babelOptions": {
+      "presets": ["@babel/preset-react", "@babel/preset-env"]
     }
   },
   "rules": {
-    "quotes": ["error", "double"]
+    "quotes": ["error", "double"],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      { "extensions": [".js", ".jsx"] }
+    ],
+    "react/no-unknown-property": "off"
   },
   "settings": {
     "import/resolver": {
