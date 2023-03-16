@@ -9,6 +9,6 @@ export default function SkipButton() {
 const StyledSkipArrow = styled(SkipArrow)`
   z-index: 999;
   position: absolute;
-  top: 85%;
-  right: 2%;
+  top: 85vh;
+  right: 2vw;
 `;

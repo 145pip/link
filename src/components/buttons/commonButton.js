@@ -17,21 +17,21 @@ export default function CommonButtons() {
 const commonStyles = css`
   z-index: 999;
   position: absolute;
-  top: 8%;
+  top: 8vh;
 `;
 
 const StyledReload = styled(Reload)`
-  right: 13%;
   ${commonStyles};
+  right: 13vw;
 `;
 
 const StyledSound = styled(Sound)`
   ${commonStyles};
-  right: 2%;
-  top: 7.5%;
+  right: 2vw;
+  top: 7.5vh;
 `;
 
 const StyledStageSelection = styled(StageSelection)`
-  right: 8%;
+  right: 8vw;
   ${commonStyles};
 `;
