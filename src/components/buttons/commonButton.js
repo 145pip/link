@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 
-import { ReactComponent as Reload } from "../../assets/Reload.svg";
-import { ReactComponent as Sound } from "../../assets/Sound.svg";
-import { ReactComponent as StageSelection } from "../../assets/StageSelection.svg";
+import { ReactComponent as Reload } from "../../assets/icon/Reload.svg";
+import { ReactComponent as Sound } from "../../assets/icon/Sound.svg";
+import { ReactComponent as StageSelection } from "../../assets/icon/StageSelection.svg";
 
 export default function CommonButtons() {
   return (
