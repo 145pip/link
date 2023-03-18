@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import Main from "./components/pages/Main";
@@ -6,6 +7,7 @@ import StageSelection from "./components/stages/StageSelection";
 import "./reset.css";
 
 export default function App() {
+  const screenMode = useSelector(state => state.screenMode.mode);
 
   return (
     <AppWrapper>

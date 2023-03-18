@@ -8,9 +8,11 @@ import Axis from "../objects/Axis";
 import LinkEdge from "../objects/LinkEdge";
 import PlayerObject from "../objects/PlayerObject";
 import AutoSnap from "../../utils/AutoSnap";
+import SkipMenu from "../menus/SkipMenu";
 
 export default function StageZero() {
   return (
+    <>
       <Canvas
         camera={{
           position: [15, 15, 15],
@@ -49,5 +51,7 @@ export default function StageZero() {
         />
         <OrbitControls />
       </Canvas>
+      <SkipMenu />
+    </>
   );
 }

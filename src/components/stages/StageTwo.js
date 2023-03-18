@@ -4,9 +4,11 @@ import { OrbitControls } from "@react-three/drei";
 
 import stageTwoCoordinates from "../../data/stageTwoCoordinates.json";
 import Cube from "../objects/Cube";
+import GameMenu from "../menus/GameMenu";
 
 export default function StageTwo() {
   return (
+    <>
       <Canvas
         camera={{
           position: [15, 15, 15],
@@ -26,5 +28,7 @@ export default function StageTwo() {
         </Physics>
         <OrbitControls />
       </Canvas>
+      <GameMenu />
+    </>
   );
 }

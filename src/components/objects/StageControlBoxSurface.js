@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Image } from "@react-three/drei";
 import { usePlane } from "@react-three/cannon";
 import PropTypes from "prop-types";
 
+import { setLevel } from "../../redux/stageLevelSlice";
+import { setMode } from "../../redux/screenModeSlice";
 
 export default function StageControlBoxSurface({
   args,
@@ -12,6 +15,7 @@ export default function StageControlBoxSurface({
   defaultImage,
   hoverImage,
 }) {
+  const dispatch = useDispatch();
 
   const [hovered, setHovered] = useState(false);
   const [ref] = usePlane(() => ({
@@ -22,6 +26,9 @@ export default function StageControlBoxSurface({
   return (
     <mesh
       ref={ref}
+      onClick={() => {
+        dispatch(setLevel(level));
+        dispatch(setMode("GameStage"));
       }}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
