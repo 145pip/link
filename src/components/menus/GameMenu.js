@@ -1,14 +1,22 @@
 import styled, { css } from "styled-components";
+import { useDispatch } from "react-redux";
 
 import { ReactComponent as Reload } from "../../assets/icon/Reload.svg";
 import { ReactComponent as Sound } from "../../assets/icon/Sound.svg";
 import { ReactComponent as StageSelection } from "../../assets/icon/StageSelection.svg";
+import { setMode } from "../../redux/screenModeSlice";
 
 export default function GameMenu() {
+  const dispatch = useDispatch();
+
+  const selectStage = () => {
+    dispatch(setMode("StageSelection"));
+  };
+
   return (
     <>
       <StyledReload />
-      <StyledStageSelection />
+      <StyledStageSelection onClick={selectStage} />
       <StyledSound />
     </>
   );
@@ -18,6 +26,7 @@ const commonStyles = css`
   z-index: 999;
   position: absolute;
   top: 8vh;
+  cursor: pointer;
 `;
 
 const StyledReload = styled(Reload)`

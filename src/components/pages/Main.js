@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
 import { OrthographicCamera, OrbitControls } from "@react-three/drei";
@@ -6,8 +7,15 @@ import styled from "styled-components";
 
 import Cube from "../objects/Cube";
 import mainCoordinates from "../../data/mainCoordinates.json";
+import { setMode } from "../../redux/screenModeSlice";
 
 export default function Main() {
+  const dispatch = useDispatch();
+
+  const startGame = () => {
+    dispatch(setMode("GameStage"));
+  };
+
   return (
     <>
       <Canvas>
@@ -29,7 +37,9 @@ export default function Main() {
         </Physics>
         <OrbitControls />
       </Canvas>
-      <Button type="button">START GAME</Button>
+      <Button type="button" onClick={startGame}>
+        START GAME
+      </Button>
     </>
   );
 }
@@ -45,4 +55,5 @@ const Button = styled.button`
   color: black;
   border: none;
   z-index: 999;
+  cursor: pointer;
 `;
