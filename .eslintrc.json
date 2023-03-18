@@ -31,7 +31,8 @@
       "error",
       { "extensions": [".js", ".jsx"] }
     ],
-    "react/no-unknown-property": "off"
+    "react/no-unknown-property": "off",
+    "no-param-reassign": 0
   },
   "settings": {
     "import/resolver": {
@@ -41,6 +42,7 @@
     },
     "react": {
       "version": "detect"
-    }
+    },
+    "import/core-modules": ["react-redux", "@reduxjs/toolkit"]
   }
 }
