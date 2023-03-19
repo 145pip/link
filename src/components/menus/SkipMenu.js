@@ -7,14 +7,14 @@ import { setMode } from "../../redux/screenModeSlice";
 export default function SkipMenu() {
   const dispatch = useDispatch();
 
-  const skipStageZero = () => {
+  const handleStageZeroSkip = () => {
     dispatch(setMode("StageSelection"));
   };
 
-  return <StyledSkipArrow onClick={skipStageZero} />;
+  return <SkipButton onClick={handleStageZeroSkip} />;
 }
 
-const StyledSkipArrow = styled(SkipArrow)`
+const SkipButton = styled(SkipArrow)`
   z-index: 999;
   position: absolute;
   top: 85vh;

@@ -12,7 +12,7 @@ import { setMode } from "../../redux/screenModeSlice";
 export default function Main() {
   const dispatch = useDispatch();
 
-  const startGame = () => {
+  const handleGameStart = () => {
     dispatch(setMode("GameStage"));
   };
 
@@ -37,14 +37,14 @@ export default function Main() {
         </Physics>
         <OrbitControls />
       </Canvas>
-      <Button type="button" onClick={startGame}>
+      <GameStartButton type="button" onClick={handleGameStart}>
         START GAME
-      </Button>
+      </GameStartButton>
     </>
   );
 }
 
-const Button = styled.button`
+const GameStartButton = styled.button`
   width: 20vw;
   height: 10vh;
   position: absolute;

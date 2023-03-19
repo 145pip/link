@@ -9,15 +9,15 @@ import { setMode } from "../../redux/screenModeSlice";
 export default function GameMenu() {
   const dispatch = useDispatch();
 
-  const selectStage = () => {
+  const handleStageSelection = () => {
     dispatch(setMode("StageSelection"));
   };
 
   return (
     <>
-      <StyledReload />
-      <StyledStageSelection onClick={selectStage} />
-      <StyledSound />
+      <ResetButton />
+      <StageSelectionButton onClick={handleStageSelection} />
+      <SoundControlButton />
     </>
   );
 }
@@ -29,18 +29,18 @@ const commonStyles = css`
   cursor: pointer;
 `;
 
-const StyledReload = styled(Reload)`
+const ResetButton = styled(Reload)`
   ${commonStyles};
   right: 13vw;
 `;
 
-const StyledSound = styled(Sound)`
+const SoundControlButton = styled(Sound)`
   ${commonStyles};
   right: 2vw;
   top: 7.5vh;
 `;
 
-const StyledStageSelection = styled(StageSelection)`
+const StageSelectionButton = styled(StageSelection)`
   right: 8vw;
   ${commonStyles};
 `;
