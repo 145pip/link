@@ -22,8 +22,8 @@ export default function StageTwo() {
         <pointLight position={[-10, -10, -10]} />
         <spotLight angle={0.25} penumbra={0.5} position={[10, 10, 5]} />
         <Physics>
-          {stageTwoCoordinates.cubes.positions.map((position, index) => (
-            <Cube key={`stage1-cube-${index + 1}`} position={position} />
+          {stageTwoCoordinates.cubes.positions.map(position => (
+            <Cube key={`stage2-cube-${position}`} position={position} />
           ))}
         </Physics>
         <OrbitControls />

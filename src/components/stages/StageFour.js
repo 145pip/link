@@ -22,8 +22,8 @@ export default function StageFour() {
         <pointLight position={[-10, -10, -10]} />
         <spotLight angle={0.25} penumbra={0.5} position={[10, 10, 5]} />
         <Physics>
-          {stageFourCoordinates.cubes.positions.map((position, index) => (
-            <Cube key={`stage1-cube-${index + 1}`} position={position} />
+          {stageFourCoordinates.cubes.positions.map(position => (
+            <Cube key={`stage4-cube-${position}`} position={position} />
           ))}
         </Physics>
         <OrbitControls />

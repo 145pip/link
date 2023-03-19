@@ -27,18 +27,18 @@ export default function StageZero() {
         <spotLight angle={0.25} penumbra={0.5} position={[10, 10, 5]} />
         <Axis />
         <Physics>
-          {stageZeroCoordinates.cubes.positions.map((position, index) => (
-            <Cube key={`stage0-cube-${index + 1}`} position={position} />
+          {stageZeroCoordinates.cubes.positions.map(position => (
+            <Cube key={`stage0-cube-${position}`} position={position} />
           ))}
-          {stageZeroCoordinates.linkEdges.map((linkEdge, index) => (
+          {stageZeroCoordinates.linkEdges.map(linkEdge => (
             <LinkEdge
-              key={`stage0-link-edge-${index + 1}`}
+              key={`stage0-link-edge-${linkEdge}`}
               linkEdge={linkEdge}
             />
           ))}
-          {stageZeroCoordinates.linkEdges.map((linkEdge, index) => (
+          {stageZeroCoordinates.linkEdges.map(linkEdge => (
             <AutoSnap
-              key={`stage0-auto-snap-${index + 1}`}
+              key={`stage0-auto-snap-${linkEdge}`}
               linkSensitivity={0.05}
               linkEdge={linkEdge}
             />

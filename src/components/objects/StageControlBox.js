@@ -8,11 +8,11 @@ export default function StageControlBox() {
   const ref = useRef();
 
   useFrame(state => {
-    const t = state.clock.getElapsedTime();
-    ref.current.position.y = 0.2 + 0.1 * Math.sin(t * 1.5);
-    ref.current.rotation.x = 0.3 * Math.sin(0.1 * t);
-    ref.current.rotation.y = 0.3 * t;
-    ref.current.rotation.z = 0.3 * Math.sin(t);
+    const timeCounter = state.clock.getElapsedTime();
+    ref.current.position.y = 0.2 + 0.1 * Math.sin(timeCounter * 1.5);
+    ref.current.rotation.x = 0.3 * Math.sin(0.1 * timeCounter);
+    ref.current.rotation.y = 0.3 * timeCounter;
+    ref.current.rotation.z = 0.3 * Math.sin(timeCounter);
   });
 
   return (
