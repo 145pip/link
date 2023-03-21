@@ -1,12 +1,16 @@
-import { useBox } from "@react-three/cannon";
+import PropTypes from "prop-types";
 
-export default function Cube(props) {
-  const [ref] = useBox(() => ({ ...props }));
+export default function Cube({ position }) {
+  const color = "rgb(51, 153, 255)";
 
   return (
-    <mesh ref={ref}>
+    <mesh position={position}>
       <boxGeometry />
-      <meshStandardMaterial color="rgb(51, 153, 255)" />
+      <meshStandardMaterial color={color} />
     </mesh>
   );
 }
+
+Cube.propTypes = {
+  position: PropTypes.arrayOf(PropTypes.number).isRequired,
+};

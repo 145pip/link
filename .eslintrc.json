@@ -32,7 +32,8 @@
       { "extensions": [".js", ".jsx"] }
     ],
     "react/no-unknown-property": "off",
-    "no-param-reassign": 0
+    "no-param-reassign": 0,
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   },
   "settings": {
     "import/resolver": {
