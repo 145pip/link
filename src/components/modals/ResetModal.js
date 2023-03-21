@@ -7,6 +7,7 @@ export default function ResetModal() {
   const handleClick = () => {
     setClosed(true);
   };
+
   if (!closed) {
     return (
       <ModalWrapper onClick={handleClick}>
