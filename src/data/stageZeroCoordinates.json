@@ -1,4 +1,6 @@
 {
+  "departure": [0, 0.5, 1],
+  "arrival": [4, 0.5, 4],
   "cubes": {
     "positions": [
       [0, 4.5, 0],
