@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import StageSelectionFunction from "./StageSelectionFunction";
 
 export default function StageSelectModal() {
-  return (
-    <ModalWrapper>
-      <PopUpModal>
-        <StageSelectionFunction />
-      </PopUpModal>
-    </ModalWrapper>
-  );
+  const [closed, setClosed] = useState(false);
+  const handleClick = () => {
+    setClosed(true);
+  };
+
+  if (!closed) {
+    return (
+      <ModalWrapper onClick={handleClick}>
+        <PopUpModal>
+          <StageSelectionFunction />
+        </PopUpModal>
+      </ModalWrapper>
+    );
+  }
 }
 
 const PopUpModal = styled.div`
