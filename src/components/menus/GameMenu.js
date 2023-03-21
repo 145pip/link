@@ -1,23 +1,29 @@
 import styled, { css } from "styled-components";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 
 import { ReactComponent as Reload } from "../../assets/icon/Reload.svg";
 import { ReactComponent as Sound } from "../../assets/icon/Sound.svg";
 import { ReactComponent as StageSelection } from "../../assets/icon/StageSelection.svg";
-import { setMode } from "../../redux/screenModeSlice";
+import ResetModal from "../modals/ResetModal";
+import StageSelectModal from "../modals/StageSelectModal";
 
 export default function GameMenu() {
-  const dispatch = useDispatch();
+  const [reset, setReset] = useState(false);
+  const [selectStage, setSelectStage] = useState(false);
 
+  const handleReset = () => {
+    setReset(true);
+  };
   const handleStageSelection = () => {
-    dispatch(setMode("StageSelection"));
+    setSelectStage(true);
   };
 
   return (
     <>
-      <ResetButton />
+      <ResetButton onClick={handleReset} />
       <StageSelectionButton onClick={handleStageSelection} />
       <SoundControlButton />
+      {(reset && <ResetModal />) || (selectStage && <StageSelectModal />)}
     </>
   );
 }
