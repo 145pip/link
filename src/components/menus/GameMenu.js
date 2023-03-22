@@ -4,26 +4,30 @@ import React, { useState } from "react";
 import { ReactComponent as Reload } from "../../assets/icon/Reload.svg";
 import { ReactComponent as Sound } from "../../assets/icon/Sound.svg";
 import { ReactComponent as StageSelection } from "../../assets/icon/StageSelection.svg";
-import ResetModal from "../modals/ResetModal";
-import StageSelectModal from "../modals/StageSelectModal";
+import Modal from "../modals/Modal";
 
 export default function GameMenu() {
-  const [reset, setReset] = useState(false);
-  const [selectStage, setSelectStage] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [message, setMessage] = useState("");
 
-  const handleReset = () => {
-    setReset(true);
+  const handleResetButtonClick = () => {
+    setIsModalOpen(true);
+    setMessage("reset");
   };
-  const handleStageSelection = () => {
-    setSelectStage(true);
+  const handleStageSelectButtonClick = () => {
+    setIsModalOpen(true);
+    setMessage("stage");
+  };
+  const handleModalClose = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <>
-      <ResetButton onClick={handleReset} />
-      <StageSelectionButton onClick={handleStageSelection} />
+      {isModalOpen && <Modal onClose={handleModalClose} message={message} />}
+      <ResetButton onClick={handleResetButtonClick} />
+      <StageSelectionButton onClick={handleStageSelectButtonClick} />
       <SoundControlButton />
-      {(reset && <ResetModal />) || (selectStage && <StageSelectModal />)}
     </>
   );
 }

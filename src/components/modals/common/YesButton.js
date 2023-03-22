@@ -1,16 +1,21 @@
+import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import { setMode } from "../../../redux/screenModeSlice";
 
-export default function SelectionButton() {
+export default function YesButton({ message }) {
   const dispatch = useDispatch();
-  const handleStageSelection = () => {
-    dispatch(setMode("StageSelection"));
+
+  const handleStageButtonClick = () => {
+    if (message === "스테이지를 선택하시겠습니까?") {
+      dispatch(setMode("StageSelection"));
+    }
   };
 
   return (
-    <CommonButton type="button" onClick={handleStageSelection}>
+    <CommonButton type="button" onClick={handleStageButtonClick}>
       Yes
     </CommonButton>
   );
@@ -27,6 +32,10 @@ const CommonButton = styled.button`
   background-color: rgba(51, 153, 255, 20%);
   color: black;
   border: none;
-  z-index: 20;
+  z-index: 30;
   cursor: pointer;
 `;
+
+YesButton.propTypes = {
+  message: PropTypes.string.isRequired,
+};
