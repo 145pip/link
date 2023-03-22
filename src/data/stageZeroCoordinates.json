@@ -3,23 +3,24 @@
   "arrival": [4, 0.5, 4],
   "cubes": {
     "positions": [
-      [0, 4.5, 0],
-      [0, 3.5, 0],
-      [0, 2.5, 0],
-      [0, 1.5, 0],
-      [0, 0.5, 0],
-      [0, 0.5, 1],
-      [0, 0.5, 2],
-      [0, 0.5, 3],
-      [0, 0.5, 4],
-      [1, 0.5, 4],
-      [2, 0.5, 4],
-      [3, 0.5, 4],
-      [4, 0.5, 4]
+      { "id": "stageZero-cube-1", "coordinate": [0, 4.5, 0] },
+      { "id": "stageZero-cube-2", "coordinate": [0, 3.5, 0] },
+      { "id": "stageZero-cube-3", "coordinate": [0, 2.5, 0] },
+      { "id": "stageZero-cube-4", "coordinate": [0, 1.5, 0] },
+      { "id": "stageZero-cube-5", "coordinate": [0, 0.5, 0] },
+      { "id": "stageZero-cube-6", "coordinate": [0, 0.5, 1] },
+      { "id": "stageZero-cube-7", "coordinate": [0, 0.5, 2] },
+      { "id": "stageZero-cube-8", "coordinate": [0, 0.5, 3] },
+      { "id": "stageZero-cube-9", "coordinate": [0, 0.5, 4] },
+      { "id": "stageZero-cube-10", "coordinate": [1, 0.5, 4] },
+      { "id": "stageZero-cube-11", "coordinate": [2, 0.5, 4] },
+      { "id": "stageZero-cube-12", "coordinate": [3, 0.5, 4] },
+      { "id": "stageZero-cube-13", "coordinate": [4, 0.5, 4] }
     ]
   },
   "linkEdges": [
     {
+      "id": "stageZero-linkEdge-1",
       "edgeFrom": {
         "pointA": [-0.5, 5, 0.5],
         "pointB": [0.5, 5, 0.5]
@@ -32,6 +33,7 @@
       "thickness": 3
     },
     {
+      "id": "stageZero-linkEdge-2",
       "edgeFrom": {
         "pointA": [1, 5, 3.5],
         "pointB": [1, 5, 4.5]
@@ -44,6 +46,7 @@
       "thickness": 3
     },
     {
+      "id": "stageZero-linkEdge-3",
       "edgeFrom": {
         "pointA": [1, 8, 3.5],
         "pointB": [1, 7, 3.5]

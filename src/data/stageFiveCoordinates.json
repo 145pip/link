@@ -1,11 +1,11 @@
 {
   "cubes": {
     "positions": [
-      [0, 0.5, 0],
-      [1, 0.5, 1],
-      [2, 0.5, 2],
-      [3, 0.5, 3],
-      [4, 0.5, 4]
+      { "id": "stageFive-cube-1", "coordinate": [0, 0.5, 0] },
+      { "id": "stageFive-cube-2", "coordinate": [1, 0.5, 1] },
+      { "id": "stageFive-cube-3", "coordinate": [2, 0.5, 2] },
+      { "id": "stageFive-cube-4", "coordinate": [3, 0.5, 3] },
+      { "id": "stageFive-cube-5", "coordinate": [4, 0.5, 4] }
     ]
   }
 }
