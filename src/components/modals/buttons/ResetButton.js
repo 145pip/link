@@ -1,15 +1,10 @@
 import styled from "styled-components";
 
-export default function ResetFunction() {
-  return (
-    <>
-      <h4>리셋 하시겠습니까?</h4>
-      <ModalButton type="button">Yes</ModalButton>
-    </>
-  );
+export default function ResetButton() {
+  return <CommonButton type="button">Yes</CommonButton>;
 }
 
-const ModalButton = styled.button`
+const CommonButton = styled.button`
   width: 10vw;
   height: 5vh;
   position: relative;

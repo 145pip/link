@@ -1,25 +1,22 @@
-import React from "react";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 
-import { setMode } from "../../redux/screenModeSlice";
+import { setMode } from "../../../redux/screenModeSlice";
 
-export default function StageSelectionFunction() {
+export default function SelectionButton() {
   const dispatch = useDispatch();
   const handleStageSelection = () => {
     dispatch(setMode("StageSelection"));
   };
+
   return (
-    <>
-      <h4>스테이지를 선택하시겠습니까?</h4>
-      <ModalButton type="button" onClick={handleStageSelection}>
-        Yes
-      </ModalButton>
-    </>
+    <CommonButton type="button" onClick={handleStageSelection}>
+      Yes
+    </CommonButton>
   );
 }
 
-const ModalButton = styled.button`
+const CommonButton = styled.button`
   width: 10vw;
   height: 5vh;
   position: relative;
