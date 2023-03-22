@@ -1,5 +1,5 @@
 {
   "cubes": {
-    "positions": [[0, 0.5, 0]]
+    "positions": [{ "id": "stageOne-cube-1", "coordinate": [0, 0.5, 0] }]
   }
 }

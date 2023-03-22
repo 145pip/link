@@ -23,7 +23,7 @@ export default function StageThree() {
         <spotLight angle={0.25} penumbra={0.5} position={[10, 10, 5]} />
         <Physics>
           {stageThreeCoordinates.cubes.positions.map(position => (
-            <Cube key={`stage3-cube-${position}`} position={position} />
+            <Cube key={position.id} position={position.coordinate} />
           ))}
         </Physics>
         <OrbitControls />

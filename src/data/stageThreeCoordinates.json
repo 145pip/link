@@ -1,9 +1,9 @@
 {
   "cubes": {
     "positions": [
-      [0, 0.5, 0],
-      [1, 0.5, 1],
-      [2, 0.5, 2]
+      { "id": "stageThree-cube-1", "coordinate": [0, 0.5, 0] },
+      { "id": "stageThree-cube-2", "coordinate": [1, 0.5, 1] },
+      { "id": "stageThree-cube-3", "coordinate": [2, 0.5, 2] }
     ]
   }
 }

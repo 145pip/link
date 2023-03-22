@@ -32,7 +32,7 @@ export default function Main() {
         />
         <Physics>
           {mainCoordinates.cubes.positions.map(position => (
-            <Cube key={`main-cube-${position}`} position={position} />
+            <Cube key={position.id} position={position.coordinate} />
           ))}
         </Physics>
         <OrbitControls />
