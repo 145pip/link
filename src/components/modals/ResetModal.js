@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import ResetFunction from "./ResetFunction";
+import ResetFunction from "./function/ResetFunction";
 
 export default function ResetModal() {
   const [closed, setClosed] = useState(false);

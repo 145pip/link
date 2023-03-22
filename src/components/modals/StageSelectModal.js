@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import StageSelectionFunction from "./StageSelectionFunction";
+import StageSelectionFunction from "./function/StageSelectionFunction";
 
 export default function StageSelectModal() {
   const [closed, setClosed] = useState(false);
