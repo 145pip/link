@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
 import LinkAnglesCalculator from "./LinkAngleCalculator";
-import { setIsLink, setLinkEdge } from "../redux/edgeLinkSlice";
+import { setIsLinked, setLinkEdge } from "../redux/edgeLinkSlice";
 
 const throttled = (callback, delay) => {
   const lastRun = useRef(Date.now());
@@ -37,7 +37,7 @@ export default function AutoSnap({ linkSensitivity, linkEdge }) {
 
     if (prevInRange.current !== inRange) {
       prevInRange.current = inRange;
-      dispatch(setIsLink(inRange));
+      dispatch(setIsLinked(inRange));
       dispatch(setLinkEdge(linkEdge));
     }
   };
