@@ -1,21 +1,24 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
+import PropTypes from "prop-types";
 
 import playerObjectKeyControl from "../../utils/playerObjectKeyControl";
 
-export default function PlayerObject() {
+export default function PlayerObject({ position, rotation }) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF("/assets/glb/playerObj.glb");
   const { actions, names } = useAnimations(animations, group);
 
   const [motionIndex, setMotionIndex] = useState(1);
-  const [playerObjectPosition, setPlayerObjectPosition] = useState([0, 1, 1]);
-  const [playerObjectRotation, setPlayerObjectRotation] = useState([0, 0, 0]);
+  const [playerObjectPosition, setPlayerObjectPosition] = useState(position);
+  const [playerObjectRotation, setPlayerObjectRotation] = useState(rotation);
 
   useEffect(() => {
     actions[names[motionIndex]].reset().setEffectiveTimeScale(3).play();
 
-    return () => actions[names[motionIndex]]?.fadeOut(0.2);
+    return () => {
+      actions[names[motionIndex]]?.fadeOut(0.2);
+    };
   }, [motionIndex, actions, names]);
 
   playerObjectKeyControl(
@@ -25,7 +28,7 @@ export default function PlayerObject() {
   );
 
   return (
-    <group ref={group} dispose={null}>
+    <group ref={group}>
       <group
         name="Scene"
         position={playerObjectPosition}
@@ -47,3 +50,8 @@ export default function PlayerObject() {
 }
 
 useGLTF.preload("/assets/glb/playerObj.glb");
+
+PlayerObject.propTypes = {
+  position: PropTypes.arrayOf(PropTypes.number),
+  rotation: PropTypes.arrayOf(PropTypes.number),
+}.isRequired;
