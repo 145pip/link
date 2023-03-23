@@ -6,6 +6,8 @@ import Cube from "../objects/Cube";
 import SkipMenu from "../menus/SkipMenu";
 import AutoSnap from "../../utils/AutoSnap";
 import PlayerObject from "../objects/PlayerObject";
+import LocationMarker from "../objects/LocationMarker";
+import LocationPointer from "../objects/LocationPointer";
 import stageZeroCoordinates from "../../data/stageZeroCoordinates.json";
 
 export default function StageZero() {
@@ -35,7 +37,12 @@ export default function StageZero() {
             />
           ))}
         </Physics>
-        <PlayerObject />
+        <LocationPointer position={[0, 5.5, 0]} color="orange" />
+        <LocationMarker
+          position={[0, 5, 0]}
+          rotation={[(90 * Math.PI) / 180, 0, 0]}
+        />
+        <PlayerObject position={[0, 1, 1]} rotation={[0, 0, 0]} />
         <OrbitControls />
       </Canvas>
       <SkipMenu />
