@@ -5,10 +5,12 @@ import { OrbitControls } from "@react-three/drei";
 import stageFiveCoordinates from "../../data/stageFiveCoordinates.json";
 import Cube from "../objects/Cube";
 import GameMenu from "../menus/GameMenu";
+import BackgroundMusicSetting from "../music/BackgroundMusicSetting";
 
 export default function StageFive() {
   return (
     <>
+      <BackgroundMusicSetting />
       <Canvas
         camera={{
           position: [15, 15, 15],
