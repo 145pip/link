@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-export default function CloseButton({ handleClose }) {
+export default function CloseButton({ handleModalClose }) {
   return (
-    <ButtonClose type="button" onClick={handleClose}>
+    <ButtonClose type="button" onClick={handleModalClose}>
       X
     </ButtonClose>
   );
@@ -22,5 +22,5 @@ const ButtonClose = styled.button`
 `;
 
 CloseButton.propTypes = {
-  handleClose: PropTypes.func.isRequired,
+  handleModalClose: PropTypes.func.isRequired,
 };

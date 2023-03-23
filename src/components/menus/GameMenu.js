@@ -24,7 +24,9 @@ export default function GameMenu() {
 
   return (
     <>
-      {isModalOpen && <Modal onClose={handleModalClose} message={message} />}
+      {isModalOpen && (
+        <Modal handleModalClose={handleModalClose} message={message} />
+      )}
       <ResetButton onClick={handleResetButtonClick} />
       <StageSelectionButton onClick={handleStageSelectButtonClick} />
       <SoundControlButton />

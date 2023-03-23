@@ -9,7 +9,7 @@ export default function YesButton({ message }) {
   const dispatch = useDispatch();
 
   const handleStageButtonClick = () => {
-    if (message === "스테이지를 선택하시겠습니까?") {
+    if (message === "stage") {
       dispatch(setMode("StageSelection"));
     }
   };
