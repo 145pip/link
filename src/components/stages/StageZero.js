@@ -1,14 +1,32 @@
+import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
 import { OrbitControls } from "@react-three/drei";
+import { useSelector } from "react-redux";
 
 import Cube from "../objects/Cube";
 import SkipMenu from "../menus/SkipMenu";
 import AutoSnap from "../../utils/AutoSnap";
 import PlayerObject from "../objects/PlayerObject";
 import stageZeroCoordinates from "../../data/stageZeroCoordinates.json";
+import { createPath, connectEdge } from "../../utils/path";
 
 export default function StageZero() {
+  const coordinates = stageZeroCoordinates.cubes.positions.map(
+    position => position.coordinate
+  );
+  const isLinked = useSelector(state => state.edgeLink.isLinked);
+  const currentLinkEdge = useSelector(state => state.edgeLink.linkEdge);
+  const [path, setPath] = useState(
+    createPath(stageZeroCoordinates.departure[1], coordinates)
+  );
+
+  useEffect(() => {
+    if (isLinked) {
+      setPath(connectEdge(path, currentLinkEdge, coordinates));
+    }
+  }, [isLinked]);
+
   return (
     <>
       <Canvas

@@ -2,17 +2,17 @@ export default function Graph() {
   this.nodes = new Map();
 }
 
-Graph.prototype.addNode = function (position) {
-  const node = JSON.stringify(position);
+Graph.prototype.addNode = function (coordinates) {
+  const node = JSON.stringify(coordinates);
 
   if (!this.nodes.has(node)) {
     this.nodes.set(node, []);
   }
 };
 
-Graph.prototype.addEdge = function (positionA, positionB) {
-  const nodeA = JSON.stringify(positionA);
-  const nodeB = JSON.stringify(positionB);
+Graph.prototype.addEdge = function (coordinatesA, coordinatesB) {
+  const nodeA = JSON.stringify(coordinatesA);
+  const nodeB = JSON.stringify(coordinatesB);
 
   if (this.nodes.has(nodeA) && this.nodes.has(nodeB)) {
     this.nodes.get(nodeA).push(nodeB);
@@ -20,24 +20,24 @@ Graph.prototype.addEdge = function (positionA, positionB) {
   }
 };
 
-Graph.prototype.removeEdge = function (positionA, positionB) {
-  const nodeA = JSON.stringify(positionA);
-  const nodeB = JSON.stringify(positionB);
+Graph.prototype.removeEdge = function (coordinatesA, coordinatesB) {
+  const nodeA = JSON.stringify(coordinatesA);
+  const nodeB = JSON.stringify(coordinatesB);
 
   if (this.nodes.has(nodeA) && this.nodes.has(nodeB)) {
     this.nodes.set(
       nodeA,
-      this.nodes.get(nodeA).filter(edge => edge !== nodeB)
+      this.nodes.get(nodeA).filter(edgeNode => edgeNode !== nodeB)
     );
     this.nodes.set(
       nodeB,
-      this.nodes.get(nodeB).filter(edge => edge !== nodeA)
+      this.nodes.get(nodeB).filter(edgeNode => edgeNode !== nodeA)
     );
   }
 };
 
-Graph.prototype.removeNode = function (position) {
-  const node = JSON.stringify(position);
+Graph.prototype.removeNode = function (coordinates) {
+  const node = JSON.stringify(coordinates);
 
   if (this.nodes.has(node)) {
     this.nodes.get(node).forEach(edgeNode => {
@@ -48,4 +48,10 @@ Graph.prototype.removeNode = function (position) {
     });
     this.nodes.delete(node);
   }
+};
+
+Graph.prototype.contains = function (coordinates) {
+  const node = JSON.stringify(coordinates);
+
+  return this.nodes.has(node);
 };

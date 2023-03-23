@@ -31,32 +31,6 @@
       },
       "color": "red",
       "thickness": 3
-    },
-    {
-      "id": "stageZero-linkEdge-2",
-      "edgeFrom": {
-        "pointA": [1, 5, 3.5],
-        "pointB": [1, 5, 4.5]
-      },
-      "edgeTo": {
-        "pointA": [1.5, 1, 1.5],
-        "pointB": [1.5, 1, 2.5]
-      },
-      "color": "green",
-      "thickness": 3
-    },
-    {
-      "id": "stageZero-linkEdge-3",
-      "edgeFrom": {
-        "pointA": [1, 8, 3.5],
-        "pointB": [1, 7, 3.5]
-      },
-      "edgeTo": {
-        "pointA": [6.5, 3, 2.5],
-        "pointB": [6.5, 2, 2.5]
-      },
-      "color": "orange",
-      "thickness": 3
     }
   ]
 }

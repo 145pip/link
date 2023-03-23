@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const edgeLinkSlice = createSlice({
   name: "edgeLink",
   initialState: {
-    isLink: false,
+    isLinked: false,
     linkEdge: null,
   },
   reducers: {
-    setIsLink: (state, action) => {
-      state.isLink = action.payload;
+    setIsLinked: (state, action) => {
+      state.isLinked = action.payload;
     },
     setLinkEdge: (state, action) => {
       state.linkEdge = action.payload;
@@ -16,5 +16,5 @@ const edgeLinkSlice = createSlice({
   },
 });
 
-export const { setIsLink, setLinkEdge } = edgeLinkSlice.actions;
+export const { setIsLinked, setLinkEdge } = edgeLinkSlice.actions;
 export default edgeLinkSlice.reducer;
