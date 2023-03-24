@@ -22,10 +22,7 @@ export default function Modal({ handleModalClose, message }) {
       <ModalArea>
         <h4>{title}</h4>
         <YesButton message={message} />
-        <CloseButton
-          handleModalClose={handleModalClose}
-          onClick={handleModalClose}
-        />
+        <CloseButton onClick={handleModalClose} />
       </ModalArea>
     </ModalWrapper>
   );
