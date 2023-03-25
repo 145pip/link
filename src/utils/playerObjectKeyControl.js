@@ -12,6 +12,7 @@ const KEYBOARD_EVENT_CODE = {
 };
 
 export default function playerObjectKeyControl(
+  playerMotions,
   setMotionIndex,
   setPlayerObjectPosition,
   setPlayerObjectRotation
@@ -28,8 +29,8 @@ export default function playerObjectKeyControl(
   useEffect(() => {
     const handleKeyDown = throttle(event => {
       if (event.code === KEYBOARD_EVENT_CODE.ARROW_UP) {
-        setMotionIndex(0);
-        setTimeout(() => setMotionIndex(1), 500);
+        setMotionIndex(playerMotions.walking);
+        setTimeout(() => setMotionIndex(playerMotions.standing), 500);
 
         for (let i = 0; i < 20; i++) {
           setTimeout(() => {
@@ -45,8 +46,8 @@ export default function playerObjectKeyControl(
           }, i * 25);
         }
       } else if (event.code === KEYBOARD_EVENT_CODE.ARROW_DOWN) {
-        setMotionIndex(0);
-        setTimeout(() => setMotionIndex(1), 500);
+        setMotionIndex(playerMotions.walking);
+        setTimeout(() => setMotionIndex(playerMotions.standing), 500);
 
         for (let i = 0; i < 20; i++) {
           setTimeout(() => {
@@ -62,7 +63,7 @@ export default function playerObjectKeyControl(
           }, i * 25);
         }
       } else if (event.code === KEYBOARD_EVENT_CODE.ARROW_LEFT) {
-        setMotionIndex(0);
+        setMotionIndex(playerMotions.walking);
         setRotationCount(previousCount => previousCount + 1);
         setTimeout(() => setMotionIndex(1), 180);
 
@@ -76,7 +77,7 @@ export default function playerObjectKeyControl(
           }, i * 10);
         }
       } else if (event.code === KEYBOARD_EVENT_CODE.ARROW_RIGHT) {
-        setMotionIndex(0);
+        setMotionIndex(playerMotions.walking);
         setRotationCount(previousCount => previousCount + 3);
         setTimeout(() => setMotionIndex(1), 180);
 
@@ -88,6 +89,31 @@ export default function playerObjectKeyControl(
               rotation[2],
             ]);
           }, i * 10);
+        }
+      } else if (event.code === "KeyZ") {
+        setMotionIndex(playerMotions.crouching);
+
+        for (let i = 0; i < 30; i++) {
+          setTimeout(() => {
+            setPlayerObjectPosition(position => [
+              position[0],
+              position[1] - 0.05,
+              position[2],
+            ]);
+          }, i * 50);
+        }
+      } else if (event.code === "KeyX") {
+        setMotionIndex(playerMotions.crouching);
+        setTimeout(() => setMotionIndex(playerMotions.standing), 1500);
+
+        for (let i = 0; i < 30; i++) {
+          setTimeout(() => {
+            setPlayerObjectPosition(position => [
+              position[0],
+              position[1] + 0.05,
+              position[2],
+            ]);
+          }, i * 50);
         }
       }
     }, 180);

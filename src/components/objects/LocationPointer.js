@@ -5,8 +5,10 @@ import PropTypes from "prop-types";
 
 export default function LocationPointer({ position, color }) {
   const pointerRef = useRef();
-  const { nodes, materials } = useGLTF("/assets/glb/pointer.glb");
+  const { nodes, materials } = useGLTF("/assets/glb/location-pointer.glb");
+
   nodes.Plane_Outsides_0.material.color.set(color);
+  nodes.Plane_Insides_0.material.color.set("white");
 
   useFrame(state => {
     const counter = state.clock.elapsedTime;
@@ -14,28 +16,27 @@ export default function LocationPointer({ position, color }) {
   });
 
   return (
-    <group ref={pointerRef}>
-      <group rotation={[0, 0, 0]} position={position} scale={0.1}>
-        <group>
-          <group>
-            <mesh
-              geometry={nodes.Plane_Outsides_0.geometry}
-              material={materials.Outsides}
-            />
-            <mesh
-              geometry={nodes.Plane_Insides_0.geometry}
-              material={materials.Insides}
-            />
-          </group>
-        </group>
-      </group>
+    <group
+      ref={pointerRef}
+      position={position}
+      rotation={[0, 0, 0]}
+      scale={0.15}
+    >
+      <mesh
+        geometry={nodes.Plane_Outsides_0.geometry}
+        material={materials.Outsides}
+      />
+      <mesh
+        geometry={nodes.Plane_Insides_0.geometry}
+        material={materials.Insides}
+      />
     </group>
   );
 }
 
-useGLTF.preload("/assets/glb/pointer.glb");
+useGLTF.preload("/assets/glb/location-pointer.glb");
 
 LocationPointer.propTypes = {
   position: PropTypes.arrayOf(PropTypes.number),
-  rotation: PropTypes.arrayOf(PropTypes.number),
+  color: PropTypes.string,
 }.isRequired;

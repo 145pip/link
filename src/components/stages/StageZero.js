@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { Physics } from "@react-three/cannon";
-import { OrbitControls } from "@react-three/drei";
 import { useSelector } from "react-redux";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, ContactShadows } from "@react-three/drei";
 
-import Cube from "../objects/Cube";
-import SkipMenu from "../menus/SkipMenu";
-import AutoSnap from "../../utils/AutoSnap";
-import PlayerObject from "../objects/PlayerObject";
+import stageZeroCoordinates from "../../data/stageZeroCoordinates.json";
+import CubeElement from "../objects/CubeElement";
+import Player from "../objects/Player";
 import LocationMarker from "../objects/LocationMarker";
 import LocationPointer from "../objects/LocationPointer";
-import stageZeroCoordinates from "../../data/stageZeroCoordinates.json";
+import AutoSnap from "../../utils/AutoSnap";
+import SkipMenu from "../menus/SkipMenu";
 import { createPath, connectEdge } from "../../utils/path";
 
 export default function StageZero() {
@@ -31,36 +30,38 @@ export default function StageZero() {
 
   return (
     <>
-      <Canvas
-        camera={{
-          position: [15, 15, 15],
-          near: 0.01,
-          far: 1000,
-          fov: 50,
-          zoom: 1,
-        }}
-      >
+      <Canvas camera={{ position: [50, 50, 50] }}>
+        <color attach="background" args={["#7478d1"]} />
         <ambientLight />
-        <pointLight position={[-10, -10, -10]} />
-        <spotLight angle={0.25} penumbra={0.5} position={[10, 10, 5]} />
-        <Physics>
-          {stageZeroCoordinates.cubes.positions.map(position => (
-            <Cube key={position.id} position={position.coordinate} />
-          ))}
-          {stageZeroCoordinates.linkEdges.map(linkEdge => (
-            <AutoSnap
-              key={linkEdge.id}
-              linkSensitivity={0.05}
-              linkEdge={linkEdge}
-            />
-          ))}
-        </Physics>
-        <LocationPointer position={[0, 5.5, 0]} color="orange" />
-        <LocationMarker
-          position={[0, 5, 0]}
-          rotation={[(90 * Math.PI) / 180, 0, 0]}
+        <pointLight position={[10, 10, 0]} castShadow />
+        <pointLight position={[10, 10, -10]} castShadow />
+        <pointLight position={[-10, 0, 10]} castshadow />
+        <ContactShadows
+          resolution={512}
+          position={[0, -0.6, 0]}
+          opacity={1}
+          scale={10}
+          blur={2}
+          far={0.8}
         />
-        <PlayerObject position={[0, 1, 1]} rotation={[0, 0, 0]} />
+        {stageZeroCoordinates.cubes.positions.map(position => (
+          <CubeElement
+            key={position.id}
+            position={position.coordinate}
+            scale={0.5}
+            color="indianred"
+          />
+        ))}
+        <LocationPointer position={[0, 5.5, 0]} color="yellow" />
+        <LocationMarker position={[0, 5, 0]} rotation={[1.5 * Math.PI, 0, 0]} />
+        {stageZeroCoordinates.linkEdges.map(linkEdge => (
+          <AutoSnap
+            key={linkEdge.id}
+            linkSensitivity={0.05}
+            linkEdge={linkEdge}
+          />
+        ))}
+        <Player position={[0, 1, 1]} rotation={[0, 1.5 * Math.PI, 0]} />
         <OrbitControls />
       </Canvas>
       <SkipMenu />

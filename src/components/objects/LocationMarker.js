@@ -1,11 +1,11 @@
 import { useRef } from "react";
-import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 import PropTypes from "prop-types";
 
 export default function LocationMarker({ position, rotation }) {
   const textureLoader = new THREE.TextureLoader();
-  const circle = textureLoader.load("/assets/circle.png");
+  const circle = textureLoader.load("/assets/image/stage-effect/circle.png");
 
   const outerCircleRef = useRef();
   const innerCircleRef = useRef();
@@ -41,13 +41,7 @@ export default function LocationMarker({ position, rotation }) {
         rotation={rotation}
       >
         <planeGeometry args={[1, 1]} />
-        <meshStandardMaterial
-          transparent
-          color="lightYellow"
-          map={circle}
-          depthWrite={false}
-          side={THREE.DoubleSide}
-        />
+        <meshStandardMaterial transparent color="lightYellow" map={circle} />
       </mesh>
       <mesh
         ref={innerCircleRef}
@@ -55,15 +49,7 @@ export default function LocationMarker({ position, rotation }) {
         rotation={rotation}
       >
         <planeGeometry args={[1, 1]} />
-        <meshStandardMaterial
-          roughness={1}
-          transparent
-          opacity={1}
-          map={circle}
-          depthWrite={false}
-          side={THREE.DoubleSide}
-          color="lightYellow"
-        />
+        <meshStandardMaterial transparent color="lightYellow" map={circle} />
       </mesh>
     </>
   );

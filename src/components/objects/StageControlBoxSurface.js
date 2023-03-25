@@ -34,12 +34,6 @@ export default function StageControlBoxSurface({
       onPointerOut={() => setHovered(false)}
     >
       <planeBufferGeometry args={args} />
-      <meshStandardMaterial
-        roughness={1}
-        transparent
-        opacity={0.6}
-        color={hovered ? "rgb(51, 153, 255)" : "aquamarine"}
-      />
       <Image
         raycast={() => null}
         position={[0, 0, 0.001]}
