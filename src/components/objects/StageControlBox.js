@@ -23,47 +23,47 @@ export default function StageControlBox() {
           position={[0, 0.5, 0]}
           level={0}
           rotation={[-Math.PI / 2, 0, 0]}
-          defaultImage="/assets/image/stage0-default.png"
-          hoverImage="/assets/image/stage0-selected.png"
+          defaultImage="/assets/image/stage-selection/stage0-default.png"
+          hoverImage="/assets/image/stage-selection/stage0-selected.png"
         />
         <StageControlBoxSurface
           args={[1, 1]}
           position={[0, 0, 0.5]}
           level={1}
-          defaultImage="/assets/image/stage1-default.png"
-          hoverImage="/assets/image/stage1-selected.png"
+          defaultImage="/assets/image/stage-selection/stage1-default.png"
+          hoverImage="/assets/image/stage-selection/stage1-selected.png"
         />
         <StageControlBoxSurface
           args={[1, 1]}
           position={[0.5, 0, 0]}
           level={2}
           rotation={[0, Math.PI / 2, 0]}
-          defaultImage="/assets/image/stage2-default.png"
-          hoverImage="/assets/image/stage2-selected.png"
+          defaultImage="/assets/image/stage-selection/stage2-default.png"
+          hoverImage="/assets/image/stage-selection/stage2-selected.png"
         />
         <StageControlBoxSurface
           args={[1, 1]}
           position={[0, 0, -0.5]}
           level={3}
           rotation={[0, Math.PI, 0]}
-          defaultImage="/assets/image/stage3-default.png"
-          hoverImage="/assets/image/stage3-selected.png"
+          defaultImage="/assets/image/stage-selection/stage3-default.png"
+          hoverImage="/assets/image/stage-selection/stage3-selected.png"
         />
         <StageControlBoxSurface
           args={[1, 1]}
           position={[-0.5, 0, 0]}
           level={4}
           rotation={[0, -Math.PI / 2, 0]}
-          defaultImage="/assets/image/stage4-default.png"
-          hoverImage="/assets/image/stage4-selected.png"
+          defaultImage="/assets/image/stage-selection/stage4-default.png"
+          hoverImage="/assets/image/stage-selection/stage4-selected.png"
         />
         <StageControlBoxSurface
           args={[1, 1]}
           position={[0, -0.5, 0]}
           level={5}
           rotation={[Math.PI / 2, 0, 0]}
-          defaultImage="/assets/image/stage5-default.png"
-          hoverImage="/assets/image/stage5-selected.png"
+          defaultImage="/assets/image/stage-selection/stage5-default.png"
+          hoverImage="/assets/image/stage-selection/stage5-selected.png"
         />
       </Physics>
     </group>
