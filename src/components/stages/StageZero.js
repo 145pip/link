@@ -1,7 +1,12 @@
-import { useEffect } from "react";
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, ContactShadows } from "@react-three/drei";
+import {
+  OrbitControls,
+  OrthographicCamera,
+  ContactShadows,
+} from "@react-three/drei";
 
 import stageZeroCoordinates from "../../data/stageZeroCoordinates.json";
 import CubeElement from "../objects/CubeElement";
@@ -11,9 +16,12 @@ import LocationPointer from "../objects/LocationPointer";
 import AutoSnap from "../../utils/AutoSnap";
 import SkipMenu from "../menus/SkipMenu";
 import usePath from "../../hooks/usePath";
+import TutorialGuide from "../objects/TutorialGuide";
 import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
 
 export default function StageZero() {
+  const [enableMouseRotation, setEnableMouseRotation] = useState(false);
+
   const dispatch = useDispatch();
   const coordinates = stageZeroCoordinates.cubes.positions.map(
     position => position.coordinate
@@ -26,7 +34,27 @@ export default function StageZero() {
 
   return (
     <>
-      <Canvas camera={{ position: [50, 50, 50] }}>
+      <Canvas>
+        {enableMouseRotation ? (
+          <OrthographicCamera
+            makeDefault
+            position={[50, 50, 50]}
+            fov={50}
+            near={0.01}
+            far={1000}
+            zoom={80}
+          />
+        ) : (
+          <OrthographicCamera
+            makeDefault
+            position={[21.9, 55.38, 62.67]}
+            rotation={[-0.736, 0.297, 0.259]}
+            fov={50}
+            near={0.01}
+            far={1000}
+            zoom={111.03706837330263}
+          />
+        )}
         <color attach="background" args={["#7478d1"]} />
         <ambientLight />
         <pointLight position={[10, 10, 0]} castShadow />
@@ -48,6 +76,13 @@ export default function StageZero() {
             color="indianred"
           />
         ))}
+        <TutorialGuide
+          position={[-5, 0, 1]}
+          rotation={[1.5 * Math.PI, 0, 0]}
+          scale={5}
+          setEnableMouseRotation={setEnableMouseRotation}
+        />
+
         <LocationPointer position={[0, 5.5, 0]} color="yellow" />
         <LocationMarker position={[0, 5, 0]} rotation={[1.5 * Math.PI, 0, 0]} />
         {stageZeroCoordinates.linkEdges.map(linkEdge => (
@@ -62,7 +97,7 @@ export default function StageZero() {
           rotation={[0, 1.5 * Math.PI, 0]}
           path={path}
         />
-        <OrbitControls />
+        {enableMouseRotation && <OrbitControls />}
       </Canvas>
       <SkipMenu />
     </>
