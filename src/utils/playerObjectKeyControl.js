@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import throttle from "./throttle";
+// import throttle from "./throttle";
 
 const MOVEMENT_INCREMENT = 0.05;
 const ROTATION_INCREMENT = (5 * Math.PI) / 180;
@@ -27,7 +27,7 @@ export default function playerObjectKeyControl(
   ];
 
   useEffect(() => {
-    const handleKeyDown = throttle(event => {
+    const handleKeyDown = event => {
       if (event.code === KEYBOARD_EVENT_CODE.ARROW_UP) {
         setMotionIndex(playerMotions.walking);
         setTimeout(() => setMotionIndex(playerMotions.standing), 500);
@@ -116,7 +116,7 @@ export default function playerObjectKeyControl(
           }, i * 50);
         }
       }
-    }, 180);
+    };
 
     window.addEventListener("keydown", handleKeyDown);
 
