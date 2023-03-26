@@ -4,25 +4,14 @@ import { OrthographicCamera } from "@react-three/drei";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
-import LinkAnglesCalculator from "./LinkAngleCalculator";
+import linkAnglesCalculator from "./linkAngleCalculator";
 import { setIsLinked, setLinkEdge } from "../redux/edgeLinkSlice";
-
-const throttled = (callback, delay) => {
-  const lastRun = useRef(Date.now());
-
-  useFrame(() => {
-    if (Date.now() - lastRun.current >= delay) {
-      callback();
-      lastRun.current = Date.now();
-    }
-  });
-};
 
 export default function AutoSnap({ linkSensitivity, linkEdge }) {
   const { camera } = useThree();
   const dispatch = useDispatch();
   const prevInRange = useRef(null);
-  const linkAngles = LinkAnglesCalculator(linkEdge);
+  const linkAngles = linkAnglesCalculator(linkEdge);
 
   const checkCameraRotation = () => {
     const inRange =
@@ -42,7 +31,9 @@ export default function AutoSnap({ linkSensitivity, linkEdge }) {
     }
   };
 
-  throttled(checkCameraRotation, 10);
+  useFrame(() => {
+    checkCameraRotation();
+  });
 
   return (
     <OrthographicCamera

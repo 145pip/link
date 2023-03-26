@@ -1,25 +1,20 @@
 import Graph from "./graph";
 
 function getUsablePath(targetY, coordinates) {
-  const coordinateSet = new Set(coordinates.map(c => c.join(",")));
+  const coordinateSet = new Set(coordinates.map(coord => coord.join(",")));
 
-  return coordinates.filter(coordinate => {
-    const topCubeCoordinates = [
-      coordinate[0],
-      coordinate[1] + 1,
-      coordinate[2],
-    ];
+  return coordinates.filter(coord => {
+    const topCubeCoordinates = [coord[0], coord[1] + 1, coord[2]];
 
     return (
-      coordinate[1] === targetY &&
-      !coordinateSet.has(topCubeCoordinates.join(","))
+      coord[1] === targetY && !coordinateSet.has(topCubeCoordinates.join(","))
     );
   });
 }
 
-function isNextPosition(coordinatesA, coordinatesB) {
-  const xAxisDiff = Math.abs(coordinatesA[0] - coordinatesB[0]);
-  const zAxisDiff = Math.abs(coordinatesA[2] - coordinatesB[2]);
+function isNextPosition(coordA, coordB) {
+  const xAxisDiff = Math.abs(coordA[0] - coordB[0]);
+  const zAxisDiff = Math.abs(coordA[2] - coordB[2]);
 
   return (
     (xAxisDiff === 1 && zAxisDiff === 0) || (xAxisDiff === 0 && zAxisDiff === 1)
@@ -79,5 +74,5 @@ export function connectEdge(path, linkEdges, coordinates) {
   addedPath.map(coordinate => path.addNode(coordinate));
   path.addEdge(edgeFromCoordinates, edgeToCoordinates);
 
-  return path;
+  return { path, edgeFromCoordinates, edgeToCoordinates };
 }
