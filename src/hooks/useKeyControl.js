@@ -70,7 +70,7 @@ export default function useKeyControl(
     }
 
     const duration = 240;
-    const steps = Math.round(duration / 25);
+    const steps = Math.round(duration / 13);
 
     setMotionIndex(PLAYER_MOTIONS.WALKING);
     setTimeout(() => setMotionIndex(PLAYER_MOTIONS.STANDING), 500);
