@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, ContactShadows } from "@react-three/drei";
 
@@ -10,23 +10,19 @@ import LocationMarker from "../objects/LocationMarker";
 import LocationPointer from "../objects/LocationPointer";
 import AutoSnap from "../../utils/AutoSnap";
 import SkipMenu from "../menus/SkipMenu";
-import { createPath, connectEdge } from "../../utils/path";
+import usePath from "../../hooks/usePath";
+import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
 
 export default function StageZero() {
+  const dispatch = useDispatch();
   const coordinates = stageZeroCoordinates.cubes.positions.map(
     position => position.coordinate
   );
-  const isLinked = useSelector(state => state.edgeLink.isLinked);
-  const currentLinkEdge = useSelector(state => state.edgeLink.linkEdge);
-  const [path, setPath] = useState(
-    createPath(stageZeroCoordinates.departure[1], coordinates)
-  );
+  const path = usePath(stageZeroCoordinates.departure, coordinates);
 
   useEffect(() => {
-    if (isLinked) {
-      setPath(connectEdge(path, currentLinkEdge, coordinates));
-    }
-  }, [isLinked]);
+    dispatch(setCurrentCoordinates(stageZeroCoordinates.departure));
+  }, []);
 
   return (
     <>
@@ -61,7 +57,11 @@ export default function StageZero() {
             linkEdge={linkEdge}
           />
         ))}
-        <Player position={[0, 1, 1]} rotation={[0, 1.5 * Math.PI, 0]} />
+        <Player
+          position={stageZeroCoordinates.departure}
+          rotation={[0, 1.5 * Math.PI, 0]}
+          path={path}
+        />
         <OrbitControls />
       </Canvas>
       <SkipMenu />
