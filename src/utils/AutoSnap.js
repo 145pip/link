@@ -4,7 +4,7 @@ import { OrthographicCamera } from "@react-three/drei";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
-import linkAnglesCalculator from "./LinkAngleCalculator";
+import linkAnglesCalculator from "./linkAngleCalculator";
 import { setIsLinked, setLinkEdge } from "../redux/edgeLinkSlice";
 
 export default function AutoSnap({ linkSensitivity, linkEdge }) {

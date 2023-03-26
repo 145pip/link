@@ -28,7 +28,6 @@ export default function Player({ position, rotation, path }) {
     position[2],
   ]);
   const [playerRotation, setPlayerRotation] = useState(rotation);
-  // eslint-disable-next-line no-unused-vars
   const [playerFace, setPlayerFace] = useState(playerFaces[0]);
 
   useEffect(() => {
@@ -38,6 +37,12 @@ export default function Player({ position, rotation, path }) {
       actions[names[motionIndex]]?.fadeOut(0.2);
     };
   }, [motionIndex, actions, names]);
+
+  useEffect(() => {
+    const randomFaceIndex = Math.round(Math.random() * 5);
+
+    setPlayerFace(playerFaces[randomFaceIndex]);
+  }, [motionIndex]);
 
   useKeyControl(
     path,
