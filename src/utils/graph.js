@@ -55,3 +55,10 @@ Graph.prototype.contains = function (coordinates) {
 
   return this.nodes.has(node);
 };
+
+Graph.prototype.isAdjacent = function (coordinatesA, coordinatesB) {
+  const nodeA = JSON.stringify(coordinatesA);
+  const nodeB = JSON.stringify(coordinatesB);
+
+  return this.nodes.get(nodeA).includes(nodeB);
+};

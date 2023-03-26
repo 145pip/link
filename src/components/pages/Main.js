@@ -8,12 +8,13 @@ import styled from "styled-components";
 import Cube from "../objects/Cube";
 import mainCoordinates from "../../data/mainCoordinates.json";
 import { setMode } from "../../redux/screenModeSlice";
+import { SCREEN_MODE } from "../../utils/constants";
 
 export default function Main() {
   const dispatch = useDispatch();
 
   const handleGameStart = () => {
-    dispatch(setMode("GameStage"));
+    dispatch(setMode(SCREEN_MODE.GAME_STAGE));
   };
 
   return (

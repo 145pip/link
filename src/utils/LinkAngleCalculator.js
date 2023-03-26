@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export default function LinkAngleCalculator(linkEdge) {
+export default function linkAngleCalculator(linkEdge) {
   const edgeFromMidpoint = {
     x: (linkEdge.edgeFrom.pointB[0] + linkEdge.edgeFrom.pointA[0]) / 2,
     y: (linkEdge.edgeFrom.pointB[1] + linkEdge.edgeFrom.pointA[1]) / 2,
