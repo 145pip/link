@@ -1,13 +1,12 @@
-/* eslint-disable no-unused-vars */
 import React, { useRef, useEffect, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import PropTypes from "prop-types";
 
-import playerObjectKeyControl from "../../utils/playerObjectKeyControl";
+import useKeyControl from "../../hooks/useKeyControl";
+import { PLAYER_MOTIONS, PLAYER_HEIGHT } from "../../utils/constants";
 
-export default function Player({ position, rotation }) {
+export default function Player({ position, rotation, path }) {
   const textureLoader = new THREE.TextureLoader();
   const playerFaces = [
     textureLoader.load("/assets/image/player-face/face1.png"),
@@ -21,11 +20,15 @@ export default function Player({ position, rotation }) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF("/assets/glb/player.glb");
   const { actions, names } = useAnimations(animations, group);
-  const playerMotions = { crouching: 0, standing: 1, walking: 2 };
 
-  const [motionIndex, setMotionIndex] = useState(playerMotions.standing);
-  const [playerPosition, setPlayerPosition] = useState(position);
+  const [motionIndex, setMotionIndex] = useState(PLAYER_MOTIONS.STANDING);
+  const [playerPosition, setPlayerPosition] = useState([
+    position[0],
+    position[1] + PLAYER_HEIGHT,
+    position[2],
+  ]);
   const [playerRotation, setPlayerRotation] = useState(rotation);
+  // eslint-disable-next-line no-unused-vars
   const [playerFace, setPlayerFace] = useState(playerFaces[0]);
 
   useEffect(() => {
@@ -36,8 +39,9 @@ export default function Player({ position, rotation }) {
     };
   }, [motionIndex, actions, names]);
 
-  playerObjectKeyControl(
-    playerMotions,
+  useKeyControl(
+    path,
+    playerPosition,
     setMotionIndex,
     setPlayerPosition,
     setPlayerRotation
@@ -134,4 +138,7 @@ useGLTF.preload("/assets/glb/player.glb");
 Player.propTypes = {
   position: PropTypes.arrayOf(PropTypes.number),
   rotation: PropTypes.arrayOf(PropTypes.number),
+  path: PropTypes.objectOf(
+    PropTypes.objectOf(PropTypes.arrayOf(PropTypes.number))
+  ),
 }.isRequired;
