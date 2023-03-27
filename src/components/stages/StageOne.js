@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Canvas } from "@react-three/fiber";
 import {
@@ -36,7 +36,7 @@ export default function StageOne() {
       <Canvas>
         <OrthographicCamera
           makeDefault
-          position={[50, 50, 50]}
+          position={[-50, 50, 50]}
           fov={50}
           near={0.01}
           far={1000}
@@ -69,10 +69,7 @@ export default function StageOne() {
           path={path}
         />
         <Hedgehog position={[4, 8.4, 4]} scale={8} />
-        <LocationPointer
-          position={stageOneCoordinates.arrival}
-          color="yellow"
-        />
+        <LocationPointer position={stageOneCoordinates.arrival} color="navy" />
         <LocationMarker
           position={stageOneCoordinates.arrival}
           rotation={[1.5 * Math.PI, 0, 0]}
@@ -80,7 +77,6 @@ export default function StageOne() {
         {stageOneCoordinates.linkEdges.map(linkEdge => (
           <LinkEdge key={linkEdge.key} linkEdge={linkEdge} />
         ))}
-
         {stageOneCoordinates.linkEdges.map(linkEdge => (
           <AutoSnap
             key={linkEdge.id}
