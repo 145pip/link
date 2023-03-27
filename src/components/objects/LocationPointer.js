@@ -18,7 +18,7 @@ export default function LocationPointer({ position, color }) {
   return (
     <group
       ref={pointerRef}
-      position={position}
+      position={[position[0], position[1] + 1, position[2]]}
       rotation={[0, 0, 0]}
       scale={0.15}
     >

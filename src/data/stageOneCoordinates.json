@@ -1,5 +1,69 @@
 {
+  "departure": [0, 0.5, 1],
+  "arrival": [5, 5.5, 4],
   "cubes": {
-    "positions": [{ "id": "stageOne-cube-1", "coordinate": [0, 0.5, 0] }]
-  }
+    "positions": [
+      { "id": "stageOne-cube-1", "coordinate": [4, 7.5, 4] },
+      { "id": "stageOne-cube-2", "coordinate": [4, 6.5, 4] },
+      { "id": "stageOne-cube-3", "coordinate": [4, 5.5, 4] },
+
+      { "id": "stageOne-cube-4", "coordinate": [5, 5.5, 4] },
+      { "id": "stageOne-cube-5", "coordinate": [5, 5.5, 3] },
+      { "id": "stageOne-cube-6", "coordinate": [5, 5.5, 2] },
+      { "id": "stageOne-cube-7", "coordinate": [5, 5.5, 1] },
+
+      { "id": "stageOne-cube-8", "coordinate": [5, 5.5, 0] },
+      { "id": "stageOne-cube-9", "coordinate": [4, 5.5, 0] },
+      { "id": "stageOne-cube-10", "coordinate": [3, 5.5, 0] },
+
+      { "id": "stageOne-cube-11", "coordinate": [1, 5.5, 0] },
+
+      { "id": "stageOne-cube-12", "coordinate": [0, 5.5, 0] },
+      { "id": "stageOne-cube-13", "coordinate": [0, 4.5, 0] },
+      { "id": "stageOne-cube-14", "coordinate": [0, 3.5, 0] },
+      { "id": "stageOne-cube-15", "coordinate": [0, 2.5, 0] },
+      { "id": "stageOne-cube-16", "coordinate": [0, 1.5, 0] },
+
+      { "id": "stageOne-cube-17", "coordinate": [0, 0.5, 0] },
+      { "id": "stageOne-cube-18", "coordinate": [0, 0.5, 1] },
+      { "id": "stageOne-cube-19", "coordinate": [0, 0.5, 2] },
+      { "id": "stageOne-cube-20", "coordinate": [0, 0.5, 3] },
+      { "id": "stageOne-cube-21", "coordinate": [0, 0.5, 4] },
+      { "id": "stageOne-cube-22", "coordinate": [0, 0.5, 5] },
+
+      { "id": "stageOne-cube-23", "coordinate": [1, 0.5, 5] },
+      { "id": "stageOne-cube-24", "coordinate": [2, 0.5, 5] },
+      { "id": "stageOne-cube-25", "coordinate": [3, 0.5, 5] },
+      { "id": "stageOne-cube-26", "coordinate": [4, 0.5, 5] },
+      { "id": "stageOne-cube-27", "coordinate": [5, 0.5, 5] }
+    ]
+  },
+  "linkEdges": [
+    {
+      "id": "stageZero-linkEdge-1",
+      "edgeFrom": {
+        "pointA": [-0.5, 6, 0.5],
+        "pointB": [0.5, 6, 0.5]
+      },
+      "edgeTo": {
+        "pointA": [4.5, 1, 4.5],
+        "pointB": [5.5, 1, 4.5]
+      },
+      "color": "blue",
+      "thickness": 3
+    },
+    {
+      "id": "stageZero-linkEdge-2",
+      "edgeFrom": {
+        "pointA": [1.5, 6, 0.5],
+        "pointB": [1.5, 6, -0.5]
+      },
+      "edgeTo": {
+        "pointA": [3.5, 8, 3.5],
+        "pointB": [3.5, 8, 4.5]
+      },
+      "color": "red",
+      "thickness": 3
+    }
+  ]
 }

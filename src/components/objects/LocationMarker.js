@@ -37,7 +37,7 @@ export default function LocationMarker({ position, rotation }) {
     <>
       <mesh
         ref={outerCircleRef}
-        position={[position[0], position[1] + 0.01, position[2]]}
+        position={[position[0], position[1] + 0.51, position[2]]}
         rotation={rotation}
       >
         <planeGeometry args={[1, 1]} />

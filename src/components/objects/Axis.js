@@ -6,21 +6,21 @@ export default function Axis() {
       <Line
         points={[
           [0, 0, 0],
-          [10, 0, 0],
+          [100, 0, 0],
         ]}
         color="red"
       />
       <Line
         points={[
           [0, 0, 0],
-          [0, 10, 0],
+          [0, 100, 0],
         ]}
         color="green"
       />
       <Line
         points={[
           [0, 0, 0],
-          [0, 0, 10],
+          [0, 0, 100],
         ]}
         color="blue"
       />
