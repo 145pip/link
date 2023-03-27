@@ -1,9 +1,113 @@
 {
+  "departure": [0, 0.5, 0],
+  "arrival": [8, 0.5, 0],
   "cubes": {
     "positions": [
       { "id": "stageThree-cube-1", "coordinate": [0, 0.5, 0] },
-      { "id": "stageThree-cube-2", "coordinate": [1, 0.5, 1] },
-      { "id": "stageThree-cube-3", "coordinate": [2, 0.5, 2] }
+      { "id": "stageThree-cube-2", "coordinate": [0, 0.5, 1] },
+      { "id": "stageThree-cube-3", "coordinate": [0, 0.5, 2] },
+      { "id": "stageThree-cube-4", "coordinate": [1, 0.5, 0] },
+      { "id": "stageThree-cube-5", "coordinate": [1, 0.5, 1] },
+      { "id": "stageThree-cube-6", "coordinate": [1, 0.5, 2] },
+      { "id": "stageThree-cube-7", "coordinate": [2, 0.5, 0] },
+      { "id": "stageThree-cube-8", "coordinate": [2, 0.5, 1] },
+      { "id": "stageThree-cube-9", "coordinate": [2, 0.5, 2] },
+      { "id": "stageThree-cube-10", "coordinate": [4, 0.5, 0] },
+      { "id": "stageThree-cube-11", "coordinate": [4, 0.5, 1] },
+      { "id": "stageThree-cube-12", "coordinate": [4, 0.5, 2] },
+      { "id": "stageThree-cube-13", "coordinate": [5, 0.5, 0] },
+      { "id": "stageThree-cube-14", "coordinate": [5, 0.5, 1] },
+      { "id": "stageThree-cube-15", "coordinate": [5, 0.5, 2] },
+      { "id": "stageThree-cube-16", "coordinate": [6, 0.5, 0] },
+      { "id": "stageThree-cube-17", "coordinate": [6, 0.5, 1] },
+      { "id": "stageThree-cube-18", "coordinate": [6, 0.5, 2] },
+      { "id": "stageThree-cube-19", "coordinate": [8, 0.5, 0] },
+      { "id": "stageThree-cube-20", "coordinate": [8, 0.5, 1] },
+      { "id": "stageThree-cube-21", "coordinate": [8, 0.5, 2] },
+      { "id": "stageThree-cube-22", "coordinate": [1, 1.5, 1] },
+      { "id": "stageThree-cube-23", "coordinate": [1, 1.5, 0] },
+      { "id": "stageThree-cube-24", "coordinate": [5, 1.5, 1] },
+      { "id": "stageThree-cube-25", "coordinate": [5, 1.5, 2] }
     ]
-  }
+  },
+  "hiddenCubes": {
+    "positions": [
+      { "id": "stageThree-invisibleCube-1", "coordinate": [6, 5.5, 6] },
+      { "id": "stageThree-invisibleCube-2", "coordinate": [6, 5.5, 7] },
+      { "id": "stageThree-invisibleCube-3", "coordinate": [6, 5.5, 8] },
+      { "id": "stageThree-invisibleCube-4", "coordinate": [7, 5.5, 6] },
+      { "id": "stageThree-invisibleCube-5", "coordinate": [7, 5.5, 7] },
+      { "id": "stageThree-invisibleCube-6", "coordinate": [7, 5.5, 8] },
+      { "id": "stageThree-invisibleCube-7", "coordinate": [8, 5.5, 6] },
+      { "id": "stageThree-invisibleCube-8", "coordinate": [8, 5.5, 7] },
+      { "id": "stageThree-invisibleCube-9", "coordinate": [8, 5.5, 8] },
+      { "id": "stageThree-invisibleCube-10", "coordinate": [10, 5.5, 6] },
+      { "id": "stageThree-invisibleCube-11", "coordinate": [10, 5.5, 7] },
+      { "id": "stageThree-invisibleCube-12", "coordinate": [10, 5.5, 8] },
+      { "id": "stageThree-invisibleCube-13", "coordinate": [11, 5.5, 6] },
+      { "id": "stageThree-invisibleCube-14", "coordinate": [11, 5.5, 7] },
+      { "id": "stageThree-invisibleCube-15", "coordinate": [11, 5.5, 8] },
+      { "id": "stageThree-invisibleCube-16", "coordinate": [12, 5.5, 6] },
+      { "id": "stageThree-invisibleCube-17", "coordinate": [12, 5.5, 7] },
+      { "id": "stageThree-invisibleCube-18", "coordinate": [12, 5.5, 8] },
+      { "id": "stageThree-invisibleCube-19", "coordinate": [7, 6.5, 6] },
+      { "id": "stageThree-invisibleCube-20", "coordinate": [7, 6.5, 7] },
+      { "id": "stageThree-invisibleCube-21", "coordinate": [11, 6.5, 6] },
+      { "id": "stageThree-invisibleCube-22", "coordinate": [11, 6.5, 7] }
+    ]
+  },
+  "linkEdges": [
+    {
+      "id": "stageThree-linkEdge-1",
+      "edgeFrom": {
+        "pointA": [5.5, 6, 5.5],
+        "pointB": [6.5, 6, 5.5]
+      },
+      "edgeTo": {
+        "pointA": [1.5, 1, 2.5],
+        "pointB": [2.5, 1, 2.5]
+      },
+      "color": "blue",
+      "thickness": 3
+    },
+    {
+      "id": "stageThree-linkEdge-2",
+      "edgeFrom": {
+        "pointA": [7.5, 6, 5.5],
+        "pointB": [8.5, 6, 5.5]
+      },
+      "edgeTo": {
+        "pointA": [3.5, 1, 2.5],
+        "pointB": [4.5, 1, 2.5]
+      },
+      "color": "red",
+      "thickness": 3
+    },
+    {
+      "id": "stageThree-linkEdge-3",
+      "edgeFrom": {
+        "pointA": [9.5, 6, 5.5],
+        "pointB": [10.5, 6, 5.5]
+      },
+      "edgeTo": {
+        "pointA": [5.5, 1, 2.5],
+        "pointB": [6.5, 1, 2.5]
+      },
+      "color": "green",
+      "thickness": 3
+    },
+    {
+      "id": "stageThree-linkEdge-4",
+      "edgeFrom": {
+        "pointA": [11.5, 6, 5.5],
+        "pointB": [12.5, 6, 5.5]
+      },
+      "edgeTo": {
+        "pointA": [7.5, 1, 2.5],
+        "pointB": [8.5, 1, 2.5]
+      },
+      "color": "black",
+      "thickness": 3
+    }
+  ]
 }
