@@ -19,7 +19,7 @@ import TutorialGuide from "../objects/TutorialGuide";
 import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
 
 export default function StageZero() {
-  const [enableMouseRotation, setEnableMouseRotation] = useState(false);
+  const [enableCameraRotation, setEnableCameraRotation] = useState(false);
 
   const dispatch = useDispatch();
   const coordinates = stageZeroCoordinates.cubes.positions.map(
@@ -34,7 +34,7 @@ export default function StageZero() {
   return (
     <>
       <Canvas>
-        {enableMouseRotation ? (
+        {enableCameraRotation ? (
           <OrthographicCamera
             makeDefault
             position={[50, 50, 50]}
@@ -79,11 +79,17 @@ export default function StageZero() {
           position={[-5, 0, 1]}
           rotation={[1.5 * Math.PI, 0, 0]}
           scale={5}
-          setEnableMouseRotation={setEnableMouseRotation}
+          setEnableCameraRotation={setEnableCameraRotation}
         />
 
-        <LocationPointer position={[0, 5.5, 0]} color="yellow" />
-        <LocationMarker position={[0, 5, 0]} rotation={[1.5 * Math.PI, 0, 0]} />
+        <LocationPointer
+          position={stageZeroCoordinates.arrival}
+          color="yellow"
+        />
+        <LocationMarker
+          position={stageZeroCoordinates.arrival}
+          rotation={[1.5 * Math.PI, 0, 0]}
+        />
         {stageZeroCoordinates.linkEdges.map(linkEdge => (
           <AutoSnap
             key={linkEdge.id}
@@ -96,7 +102,7 @@ export default function StageZero() {
           rotation={[0, 1.5 * Math.PI, 0]}
           path={path}
         />
-        {enableMouseRotation && <OrbitControls />}
+        {enableCameraRotation && <OrbitControls />}
       </Canvas>
       <SkipMenu />
     </>

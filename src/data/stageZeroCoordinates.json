@@ -1,6 +1,6 @@
 {
   "departure": [0, 0.5, 1],
-  "arrival": [4, 0.5, 4],
+  "arrival": [0, 4.5, 0],
   "cubes": {
     "positions": [
       { "id": "stageZero-cube-1", "coordinate": [0, 4.5, 0] },

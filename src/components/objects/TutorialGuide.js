@@ -9,7 +9,7 @@ export default function TutorialGuide({
   position,
   rotation,
   scale,
-  setEnableMouseRotation,
+  setEnableCameraRotation,
 }) {
   const dispatch = useDispatch();
   const isLinked = useSelector(state => state.edgeLink.isLinked);
@@ -80,7 +80,7 @@ export default function TutorialGuide({
       setCurrentMission(missions.mission4);
       setCurrentKeydown(keydownGuides.key);
       setCurrentClick(clickGuides.mouseLeft);
-      setEnableMouseRotation(true);
+      setEnableCameraRotation(true);
     }
   }, [currentPosition]);
 

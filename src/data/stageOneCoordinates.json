@@ -40,7 +40,7 @@
   },
   "linkEdges": [
     {
-      "id": "stageZero-linkEdge-1",
+      "id": "stageOne-linkEdge-1",
       "edgeFrom": {
         "pointA": [-0.5, 6, 0.5],
         "pointB": [0.5, 6, 0.5]
@@ -53,14 +53,14 @@
       "thickness": 3
     },
     {
-      "id": "stageZero-linkEdge-2",
+      "id": "stageOne-linkEdge-2",
       "edgeFrom": {
-        "pointA": [1.5, 6, 0.5],
-        "pointB": [1.5, 6, -0.5]
+        "pointA": [3.5, 7, 3.5],
+        "pointB": [3.5, 7, 4.5]
       },
       "edgeTo": {
-        "pointA": [3.5, 8, 3.5],
-        "pointB": [3.5, 8, 4.5]
+        "pointA": [1.5, 6, 0.5],
+        "pointB": [1.5, 6, -0.5]
       },
       "color": "red",
       "thickness": 3
