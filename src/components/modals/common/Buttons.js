@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import { setMode } from "../../../redux/screenModeSlice";
 
-export default function YesButton({ message }) {
+export default function Buttons({ message, handleModalClose }) {
   const dispatch = useDispatch();
 
   const handleStageButtonClick = () => {
@@ -15,18 +15,24 @@ export default function YesButton({ message }) {
   };
 
   return (
-    <CommonButton type="button" onClick={handleStageButtonClick}>
-      Yes
-    </CommonButton>
+    <>
+      <CommonButton type="button" onClick={handleStageButtonClick}>
+        Yes
+      </CommonButton>
+      <CommonButton type="button" onClick={handleModalClose}>
+        No
+      </CommonButton>
+    </>
   );
 }
 
 const CommonButton = styled.button`
-  width: 10vw;
+  width: 6vw;
   height: 5vh;
   position: relative;
   top: 60%;
-  left: 50%;
+  left: 22%;
+  margin: 5%;
   transform: translate(-50%, -50%);
   font-size: 18px;
   background-color: rgba(51, 153, 255, 20%);
@@ -36,6 +42,7 @@ const CommonButton = styled.button`
   cursor: pointer;
 `;
 
-YesButton.propTypes = {
+Buttons.propTypes = {
   message: PropTypes.string.isRequired,
+  handleModalClose: PropTypes.func.isRequired,
 };
