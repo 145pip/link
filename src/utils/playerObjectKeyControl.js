@@ -1,6 +1,9 @@
+import * as THREE from "three";
 import { useState, useEffect } from "react";
 
 // import throttle from "./throttle";
+import singleStepSound from "../assets/music/singleStepSound.mp3";
+import crouchingSound from "../assets/music/crouchingSound.mp3";
 
 const MOVEMENT_INCREMENT = 0.05;
 const ROTATION_INCREMENT = (5 * Math.PI) / 180;
@@ -15,7 +18,8 @@ export default function playerObjectKeyControl(
   playerMotions,
   setMotionIndex,
   setPlayerObjectPosition,
-  setPlayerObjectRotation
+  setPlayerObjectRotation,
+  isMusicOn
 ) {
   const [rotationCount, setRotationCount] = useState(0);
 
@@ -26,11 +30,38 @@ export default function playerObjectKeyControl(
     { x: -1, z: 0 },
   ];
 
+  const listener = new THREE.AudioListener();
+  const audioLoader = new THREE.AudioLoader();
+
+  const singleFootStep = () => {
+    audioLoader.load(singleStepSound, buffer => {
+      const sound = new THREE.Audio(listener);
+      sound.setBuffer(buffer);
+      sound.setLoop(false);
+      sound.setVolume(0.3);
+      sound.play();
+    });
+  };
+
+  const motionSound = () => {
+    audioLoader.load(crouchingSound, buffer => {
+      const sound = new THREE.Audio(listener);
+      sound.setBuffer(buffer);
+      sound.setLoop(false);
+      sound.setVolume(0.3);
+      sound.play();
+    });
+  };
+
   useEffect(() => {
     const handleKeyDown = event => {
       if (event.code === KEYBOARD_EVENT_CODE.ARROW_UP) {
         setMotionIndex(playerMotions.walking);
         setTimeout(() => setMotionIndex(playerMotions.standing), 500);
+
+        if (isMusicOn) {
+          singleFootStep();
+        }
 
         for (let i = 0; i < 20; i++) {
           setTimeout(() => {
@@ -48,6 +79,10 @@ export default function playerObjectKeyControl(
       } else if (event.code === KEYBOARD_EVENT_CODE.ARROW_DOWN) {
         setMotionIndex(playerMotions.walking);
         setTimeout(() => setMotionIndex(playerMotions.standing), 500);
+
+        if (isMusicOn) {
+          singleFootStep();
+        }
 
         for (let i = 0; i < 20; i++) {
           setTimeout(() => {
@@ -67,6 +102,10 @@ export default function playerObjectKeyControl(
         setRotationCount(previousCount => previousCount + 1);
         setTimeout(() => setMotionIndex(1), 180);
 
+        if (isMusicOn) {
+          singleFootStep();
+        }
+
         for (let i = 0; i < 18; i++) {
           setTimeout(() => {
             setPlayerObjectRotation(rotation => [
@@ -81,6 +120,10 @@ export default function playerObjectKeyControl(
         setRotationCount(previousCount => previousCount + 3);
         setTimeout(() => setMotionIndex(1), 180);
 
+        if (isMusicOn) {
+          singleFootStep();
+        }
+
         for (let i = 0; i < 18; i++) {
           setTimeout(() => {
             setPlayerObjectRotation(rotation => [
@@ -92,6 +135,10 @@ export default function playerObjectKeyControl(
         }
       } else if (event.code === "KeyZ") {
         setMotionIndex(playerMotions.crouching);
+
+        if (isMusicOn) {
+          motionSound();
+        }
 
         for (let i = 0; i < 30; i++) {
           setTimeout(() => {
@@ -105,6 +152,10 @@ export default function playerObjectKeyControl(
       } else if (event.code === "KeyX") {
         setMotionIndex(playerMotions.crouching);
         setTimeout(() => setMotionIndex(playerMotions.standing), 1500);
+
+        if (isMusicOn) {
+          motionSound();
+        }
 
         for (let i = 0; i < 30; i++) {
           setTimeout(() => {
@@ -123,5 +174,5 @@ export default function playerObjectKeyControl(
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [rotationCount]);
+  }, [rotationCount, isMusicOn]);
 }

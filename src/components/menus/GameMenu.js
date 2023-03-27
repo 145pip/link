@@ -35,16 +35,16 @@ export default function GameMenu() {
 const commonStyles = css`
   z-index: 999;
   position: absolute;
-  top: 8vh;
+  top: 9vh;
   cursor: pointer;
 `;
 
 const ResetButton = styled(Reload)`
   ${commonStyles};
-  right: 13vw;
+  right: 35vw;
 `;
 
 const StageSelectionButton = styled(StageSelection)`
-  right: 8vw;
+  right: 28vw;
   ${commonStyles};
 `;

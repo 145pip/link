@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import useKeyControl from "../../hooks/useKeyControl";
 import { PLAYER_MOTIONS, PLAYER_HEIGHT } from "../../utils/constants";
 
-export default function Player({ position, rotation, path }) {
+export default function Player({ position, rotation, path, isSoundEffectOn }) {
   const textureLoader = new THREE.TextureLoader();
   const playerFaces = [
     textureLoader.load("/assets/image/player-face/face1.png"),
@@ -44,7 +44,8 @@ export default function Player({ position, rotation, path }) {
     playerPosition,
     setMotionIndex,
     setPlayerPosition,
-    setPlayerRotation
+    setPlayerRotation,
+    isSoundEffectOn
   );
 
   return (
@@ -141,4 +142,5 @@ Player.propTypes = {
   path: PropTypes.objectOf(
     PropTypes.objectOf(PropTypes.arrayOf(PropTypes.number))
   ),
+  isSoundEffectOn: PropTypes.bool.isRequired,
 }.isRequired;

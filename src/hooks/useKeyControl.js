@@ -1,7 +1,9 @@
+import * as THREE from "three";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setCurrentCoordinates } from "../redux/currentCoordinatesSlice";
+import singleStepSound from "../assets/music/singleStepSound.mp3";
 import { PLAYER_MOTIONS, PLAYER_HEIGHT } from "../utils/constants";
 
 const ROTATION_INCREMENT = (5 * Math.PI) / 180;
@@ -23,10 +25,13 @@ export default function useKeyControl(
   playerPosition,
   setMotionIndex,
   setPlayerPosition,
-  setPlayerRotation
+  setPlayerRotation,
+  isSoundEffectOn
 ) {
   const dispatch = useDispatch();
   const [rotationCount, setRotationCount] = useState(0);
+  const listener = new THREE.AudioListener();
+  const audioLoader = new THREE.AudioLoader();
   const currentCoordinates = useSelector(
     state => state.currentCoordinates.coordinates
   );
@@ -40,6 +45,16 @@ export default function useKeyControl(
 
   const lerp = (start, end, t) => {
     return start + (end - start) * t;
+  };
+
+  const singleFootStep = () => {
+    audioLoader.load(singleStepSound, buffer => {
+      const sound = new THREE.Audio(listener);
+      sound.setBuffer(buffer);
+      sound.setLoop(false);
+      sound.setVolume(0.3);
+      sound.play();
+    });
   };
 
   const movePlayer = direction => {
@@ -75,6 +90,10 @@ export default function useKeyControl(
     setMotionIndex(PLAYER_MOTIONS.WALKING);
     setTimeout(() => setMotionIndex(PLAYER_MOTIONS.STANDING), 500);
 
+    if (isSoundEffectOn) {
+      singleFootStep();
+    }
+
     for (let i = 0; i <= steps; i++) {
       setTimeout(() => {
         const t = i / steps;
@@ -93,6 +112,10 @@ export default function useKeyControl(
     setMotionIndex(PLAYER_MOTIONS.WALKING);
     setRotationCount(previousCount => previousCount + (direction > 0 ? 1 : 3));
     setTimeout(() => setMotionIndex(PLAYER_MOTIONS.STANDING), 180);
+
+    if (isSoundEffectOn) {
+      singleFootStep();
+    }
 
     for (let i = 0; i < 18; i++) {
       setTimeout(() => {
@@ -123,5 +146,5 @@ export default function useKeyControl(
     return () => {
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [rotationCount, playerPosition]);
+  }, [rotationCount, playerPosition, isSoundEffectOn]);
 }

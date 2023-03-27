@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, ContactShadows } from "@react-three/drei";
@@ -8,12 +9,18 @@ import CubeElement from "../objects/CubeElement";
 import Player from "../objects/Player";
 import LocationMarker from "../objects/LocationMarker";
 import LocationPointer from "../objects/LocationPointer";
+import BackgroundMusic from "../music/BackgroundMusic";
 import AutoSnap from "../../utils/AutoSnap";
 import SkipMenu from "../menus/SkipMenu";
 import usePath from "../../hooks/usePath";
 import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
 
-export default function StageZero() {
+export default function StageZero({
+  isBGMOn,
+  isSoundEffectOn,
+  handleToggleBackgroundSoundButtonClick,
+  handleToggleAllSoundsButtonClick,
+}) {
   const dispatch = useDispatch();
   const coordinates = stageZeroCoordinates.cubes.positions.map(
     position => position.coordinate
@@ -26,6 +33,14 @@ export default function StageZero() {
 
   return (
     <>
+      <BackgroundMusic
+        isBGMOn={isBGMOn}
+        isSoundEffectOn={isSoundEffectOn}
+        handleToggleBackgroundSoundButtonClick={
+          handleToggleBackgroundSoundButtonClick
+        }
+        handleToggleAllSoundsButtonClick={handleToggleAllSoundsButtonClick}
+      />
       <Canvas camera={{ position: [50, 50, 50] }}>
         <color attach="background" args={["#7478d1"]} />
         <ambientLight />
@@ -55,12 +70,14 @@ export default function StageZero() {
             key={linkEdge.id}
             linkSensitivity={0.05}
             linkEdge={linkEdge}
+            isSoundEffectOn={isSoundEffectOn}
           />
         ))}
         <Player
           position={stageZeroCoordinates.departure}
           rotation={[0, 1.5 * Math.PI, 0]}
           path={path}
+          isSoundEffectOn={isSoundEffectOn}
         />
         <OrbitControls />
       </Canvas>
@@ -68,3 +85,10 @@ export default function StageZero() {
     </>
   );
 }
+
+StageZero.propTypes = {
+  isBGMOn: PropTypes.bool.isRequired,
+  isSoundEffectOn: PropTypes.bool.isRequired,
+  handleToggleBackgroundSoundButtonClick: PropTypes.func.isRequired,
+  handleToggleAllSoundsButtonClick: PropTypes.func.isRequired,
+};

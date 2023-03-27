@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
 import { OrbitControls } from "@react-three/drei";
@@ -7,10 +8,22 @@ import Cube from "../objects/Cube";
 import GameMenu from "../menus/GameMenu";
 import BackgroundMusic from "../music/BackgroundMusic";
 
-export default function StageOne() {
+export default function StageOne({
+  isBGMOn,
+  isSoundEffectOn,
+  handleToggleBackgroundSoundButtonClick,
+  handleToggleAllSoundsButtonClick,
+}) {
   return (
     <>
-      <BackgroundMusic />
+      <BackgroundMusic
+        isBGMOn={isBGMOn}
+        isSoundEffectOn={isSoundEffectOn}
+        handleToggleBackgroundSoundButtonClick={
+          handleToggleBackgroundSoundButtonClick
+        }
+        handleToggleAllSoundsButtonClick={handleToggleAllSoundsButtonClick}
+      />
       <Canvas
         camera={{
           position: [15, 15, 15],
@@ -34,3 +47,10 @@ export default function StageOne() {
     </>
   );
 }
+
+StageOne.propTypes = {
+  isBGMOn: PropTypes.bool.isRequired,
+  isSoundEffectOn: PropTypes.bool.isRequired,
+  handleToggleBackgroundSoundButtonClick: PropTypes.func.isRequired,
+  handleToggleAllSoundsButtonClick: PropTypes.func.isRequired,
+};
