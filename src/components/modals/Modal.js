@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import YesButton from "./common/YesButton";
+import Buttons from "./common/Buttons";
 import CloseButton from "./common/CloseButton";
 
 export default function Modal({ handleModalClose, message }) {
@@ -21,8 +21,8 @@ export default function Modal({ handleModalClose, message }) {
     <ModalWrapper onClick={handleModalClose}>
       <ModalArea>
         <h4>{title}</h4>
-        <YesButton message={message} />
-        <CloseButton onClick={handleModalClose} />
+        <Buttons message={message} handleModalClose={handleModalClose} />
+        <CloseButton handleModalClose={handleModalClose} />
       </ModalArea>
     </ModalWrapper>
   );
