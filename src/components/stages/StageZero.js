@@ -6,21 +6,27 @@ import {
   OrthographicCamera,
   ContactShadows,
 } from "@react-three/drei";
+import PropTypes from "prop-types";
 
 import stageZeroCoordinates from "../../data/stageZeroCoordinates.json";
 import CubeElement from "../objects/CubeElement";
 import Player from "../objects/Player";
 import LocationMarker from "../objects/LocationMarker";
 import LocationPointer from "../objects/LocationPointer";
+import BackgroundMusic from "../music/BackgroundMusic";
 import AutoSnap from "../../utils/AutoSnap";
 import SkipMenu from "../menus/SkipMenu";
 import usePath from "../../hooks/usePath";
 import TutorialGuide from "../objects/TutorialGuide";
 import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
 
-export default function StageZero() {
+export default function StageZero({
+  isBGMOn,
+  isSoundEffectOn,
+  handleToggleBackgroundSoundButtonClick,
+  handleToggleAllSoundsButtonClick,
+}) {
   const [enableCameraRotation, setEnableCameraRotation] = useState(false);
-
   const dispatch = useDispatch();
   const coordinates = stageZeroCoordinates.cubes.positions.map(
     position => position.coordinate
@@ -95,16 +101,33 @@ export default function StageZero() {
             key={linkEdge.id}
             linkSensitivity={0.05}
             linkEdge={linkEdge}
+            isSoundEffectOn={isSoundEffectOn}
           />
         ))}
         <Player
           position={stageZeroCoordinates.departure}
           rotation={[0, 1.5 * Math.PI, 0]}
           path={path}
+          isSoundEffectOn={isSoundEffectOn}
         />
         {enableCameraRotation && <OrbitControls />}
       </Canvas>
+      <BackgroundMusic
+        isBGMOn={isBGMOn}
+        isSoundEffectOn={isSoundEffectOn}
+        handleToggleBackgroundSoundButtonClick={
+          handleToggleBackgroundSoundButtonClick
+        }
+        handleToggleAllSoundsButtonClick={handleToggleAllSoundsButtonClick}
+      />
       <SkipMenu />
     </>
   );
 }
+
+StageZero.propTypes = {
+  isBGMOn: PropTypes.bool.isRequired,
+  isSoundEffectOn: PropTypes.bool.isRequired,
+  handleToggleBackgroundSoundButtonClick: PropTypes.func.isRequired,
+  handleToggleAllSoundsButtonClick: PropTypes.func.isRequired,
+};

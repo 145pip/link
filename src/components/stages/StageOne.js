@@ -6,6 +6,7 @@ import {
   OrthographicCamera,
   ContactShadows,
 } from "@react-three/drei";
+import PropTypes from "prop-types";
 
 import stageOneCoordinates from "../../data/stageOneCoordinates.json";
 import CubeElement from "../objects/CubeElement";
@@ -20,7 +21,12 @@ import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
 import GameMenu from "../menus/GameMenu";
 import BackgroundMusic from "../music/BackgroundMusic";
 
-export default function StageOne() {
+export default function StageOne({
+  isBGMOn,
+  isSoundEffectOn,
+  handleToggleBackgroundSoundButtonClick,
+  handleToggleAllSoundsButtonClick,
+}) {
   const dispatch = useDispatch();
   const coordinates = stageOneCoordinates.cubes.positions.map(
     position => position.coordinate
@@ -87,7 +93,21 @@ export default function StageOne() {
         <OrbitControls />
       </Canvas>
       <GameMenu />
-      <BackgroundMusic />
+      <BackgroundMusic
+        isBGMOn={isBGMOn}
+        isSoundEffectOn={isSoundEffectOn}
+        handleToggleBackgroundSoundButtonClick={
+          handleToggleBackgroundSoundButtonClick
+        }
+        handleToggleAllSoundsButtonClick={handleToggleAllSoundsButtonClick}
+      />
     </>
   );
 }
+
+StageOne.propTypes = {
+  isBGMOn: PropTypes.bool.isRequired,
+  isSoundEffectOn: PropTypes.bool.isRequired,
+  handleToggleBackgroundSoundButtonClick: PropTypes.func.isRequired,
+  handleToggleAllSoundsButtonClick: PropTypes.func.isRequired,
+};
