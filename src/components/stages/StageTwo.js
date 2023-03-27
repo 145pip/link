@@ -69,13 +69,12 @@ export default function StageTwo() {
           rotation={[0, 1.5 * Math.PI, 0]}
           path={path}
         />
-        <Hedgehog position={[3, 5.4, 5]} scale={8} />
         <Hedgehog position={[3, 5.4, 4]} scale={8} />
-        <Hedgehog position={[4, 5.4, 4]} scale={8} />
-        <Hedgehog position={[5, 5.4, 4]} scale={8} />
         <Hedgehog position={[4, 5.4, 3]} scale={8} />
         <Hedgehog position={[4, 5.4, 4]} scale={8} />
         <Hedgehog position={[4, 5.4, 5]} scale={8} />
+        <Hedgehog position={[5, 5.4, 4]} scale={8} />
+        <Hedgehog position={[3, 4.4, 5]} scale={8} />
         <LocationPointer
           position={stageTwoCoordinates.arrival}
           color="indianred"
