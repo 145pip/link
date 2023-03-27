@@ -1,65 +1,34 @@
-import { useEffect, useState } from "react";
-import * as THREE from "three";
-import styled from "styled-components";
+import React from "react";
+import PropTypes from "prop-types";
 
-import stageZeroBGM from "../../assets/music/stageZeroBGM.mp3";
-import { ReactComponent as Sound } from "../../assets/icon/Sound.svg";
-import { ReactComponent as SoundOff } from "../../assets/icon/SoundOff.svg";
+import BgmSoundButton from "./BgmSoundButton";
+import SoundEffectMusicButton from "./SoundEffectMusicButton";
 
-export default function BackgroundMusic() {
-  const [isMusicOn, setIsMusicOn] = useState(true);
-  const listener = new THREE.AudioListener();
-  const sound = new THREE.Audio(listener);
-  const audioLoader = new THREE.AudioLoader();
-
-  const musicPlay = () => {
-    audioLoader.load(stageZeroBGM, buffer => {
-      sound.setBuffer(buffer);
-      sound.setLoop(true);
-      sound.setVolume(0.1);
-      sound.play();
-    });
-  };
-
-  const handleToggleSoundButtonClick = () => {
-    setIsMusicOn(prevState => !prevState);
-  };
-
-  useEffect(() => {
-    musicPlay();
-  }, [sound]);
-
-  useEffect(() => {
-    if (!isMusicOn) {
-      sound.play();
-    } else {
-      sound.pause();
-    }
-
-    return () => {
-      sound.pause();
-    };
-  }, [isMusicOn, sound]);
-
-  return isMusicOn ? (
-    <SoundOnButton onClick={handleToggleSoundButtonClick} />
-  ) : (
-    <SoundOffButton onClick={handleToggleSoundButtonClick} />
+export default function BackgroundMusic({
+  isBGMOn,
+  isSoundEffectOn,
+  handleToggleBackgroundSoundButtonClick,
+  handleToggleAllSoundsButtonClick,
+}) {
+  return (
+    <>
+      <BgmSoundButton
+        isBGMOn={isBGMOn}
+        handleToggleBackgroundSoundButtonClick={
+          handleToggleBackgroundSoundButtonClick
+        }
+      />
+      <SoundEffectMusicButton
+        isSoundEffectOn={isSoundEffectOn}
+        handleToggleAllSoundsButtonClick={handleToggleAllSoundsButtonClick}
+      />
+    </>
   );
 }
 
-const SoundOnButton = styled(Sound)`
-  z-index: 999;
-  position: absolute;
-  cursor: pointer;
-  top: 7.5vh;
-  right: 2vw;
-`;
-
-const SoundOffButton = styled(SoundOff)`
-  z-index: 999;
-  position: absolute;
-  cursor: pointer;
-  top: 7.5vh;
-  right: 2vw;
-`;
+BackgroundMusic.propTypes = {
+  isBGMOn: PropTypes.bool.isRequired,
+  isSoundEffectOn: PropTypes.bool.isRequired,
+  handleToggleBackgroundSoundButtonClick: PropTypes.func.isRequired,
+  handleToggleAllSoundsButtonClick: PropTypes.func.isRequired,
+};

@@ -1,17 +1,26 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
 import { OrthographicCamera } from "@react-three/drei";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
+import * as THREE from "three";
 
-import linkAnglesCalculator from "./linkAngleCalculator";
+import linkAnglesCalculator from "./LinkAngleCalculator";
 import { setIsLinked, setLinkEdge } from "../redux/edgeLinkSlice";
+import linkedSound from "../assets/music/linkedSound.mp3";
 
-export default function AutoSnap({ linkSensitivity, linkEdge }) {
+export default function AutoSnap({
+  linkSensitivity,
+  linkEdge,
+  isSoundEffectOn,
+}) {
+  const [soundIsOn, setSoundIsOn] = useState(true);
   const { camera } = useThree();
   const dispatch = useDispatch();
   const prevInRange = useRef(null);
   const linkAngles = linkAnglesCalculator(linkEdge);
+  const listener = new THREE.AudioListener();
+  const audioLoader = new THREE.AudioLoader();
 
   const checkCameraRotation = () => {
     const inRange =
@@ -22,6 +31,18 @@ export default function AutoSnap({ linkSensitivity, linkEdge }) {
 
     if (inRange) {
       camera.rotation.set(linkAngles.x, linkAngles.y, camera.rotation.z);
+      if (isSoundEffectOn && soundIsOn) {
+        audioLoader.load(linkedSound, buffer => {
+          const sound = new THREE.Audio(listener);
+          sound.setBuffer(buffer);
+          sound.setLoop(false);
+          sound.setVolume(0.5);
+          sound.play();
+          setSoundIsOn(false);
+        });
+      }
+    } else {
+      setSoundIsOn(true);
     }
 
     if (prevInRange.current !== inRange) {
@@ -60,4 +81,5 @@ AutoSnap.propTypes = {
     color: PropTypes.string,
     thickness: PropTypes.number,
   }).isRequired,
+  isSoundEffectOn: PropTypes.bool.isRequired,
 };
