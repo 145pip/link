@@ -11,12 +11,7 @@ export default function usePath(startingCoordinate, coordinates) {
   const dispatch = useDispatch();
   const isLinked = useSelector(state => state.edgeLink.isLinked);
   const linkEdge = useSelector(state => state.edgeLink.linkEdge);
-  const currentCoordinates = useSelector(
-    state => state.currentCoordinates.coordinates
-  );
-  const [path, setPath] = useState(
-    createPath(startingCoordinate[1], coordinates)
-  );
+  const [path, setPath] = useState(createPath(startingCoordinate, coordinates));
 
   useEffect(() => {
     if (isLinked) {
@@ -24,8 +19,6 @@ export default function usePath(startingCoordinate, coordinates) {
       setPath(result.path);
       dispatch(setEdgeFromCoordinates(result.edgeFromCoordinates));
       dispatch(setEdgeToCoordinates(result.edgeToCoordinates));
-    } else if (currentCoordinates) {
-      setPath(createPath(currentCoordinates[1], coordinates));
     }
   }, [isLinked]);
 

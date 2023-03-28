@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import * as THREE from "three";
 import PropTypes from "prop-types";
-
-import { setLevel } from "../../redux/stageLevelSlice";
 
 export default function TutorialGuide({
   position,
@@ -11,12 +9,10 @@ export default function TutorialGuide({
   scale,
   setEnableCameraRotation,
 }) {
-  const dispatch = useDispatch();
   const isLinked = useSelector(state => state.edgeLink.isLinked);
   const currentPosition = useSelector(
     state => state.currentCoordinates.coordinates
   );
-
   const textureLoader = new THREE.TextureLoader();
   const missions = {
     mission1: textureLoader.load("/assets/image/tutorial/mission1.png"),
@@ -58,7 +54,12 @@ export default function TutorialGuide({
 
   useEffect(() => {
     const handleKeyUp = event => {
-      if (event.code === "ArrowLeft") {
+      if (
+        event.code === "ArrowLeft" &&
+        currentPosition[0] === 0 &&
+        currentPosition[1] === 0.5 &&
+        currentPosition[2] === 4
+      ) {
         setCurrentMission(missions.mission3);
         setCurrentKeydown(keydownGuides.keyArrowUp);
       }
@@ -88,16 +89,6 @@ export default function TutorialGuide({
     if (isLinked) {
       setCurrentMission(missions.mission5);
       setCurrentKeydown(keydownGuides.keyArrowUp);
-    }
-  }, [currentPosition]);
-
-  useEffect(() => {
-    if (
-      currentPosition[0] === 0 &&
-      currentPosition[1] === 4.5 &&
-      currentPosition[2] === 0
-    ) {
-      dispatch(setLevel(1));
     }
   }, [currentPosition]);
 
@@ -145,5 +136,5 @@ export default function TutorialGuide({
 TutorialGuide.propTypes = {
   position: PropTypes.arrayOf(PropTypes.number),
   rotation: PropTypes.arrayOf(PropTypes.number),
-  scale: PropTypes.Number,
+  scale: PropTypes.number,
 }.isRequired;

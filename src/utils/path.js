@@ -21,14 +21,37 @@ function isNextPosition(coordA, coordB) {
   );
 }
 
-export function createPath(targetY, coordinates) {
+export function createPath(startingCoordinate, coordinates) {
   const graph = new Graph();
-  const path = getUsablePath(targetY, coordinates);
+  const visited = new Set();
+  const queue = [startingCoordinate];
 
-  path.map(coordinate => graph.addNode(coordinate));
+  while (queue.length > 0) {
+    const currentNode = queue.shift();
+    const node = JSON.stringify(currentNode);
+    if (!visited.has(node)) {
+      visited.add(node);
+      graph.addNode(currentNode);
+
+      const neighbors = coordinates.filter(coord => {
+        const topCubeCoordinates = [coord[0], coord[1] + 1, coord[2]];
+        const coordinateSet = new Set(coordinates.map(c => c.join(",")));
+        return (
+          !visited.has(JSON.stringify(coord)) &&
+          !coordinateSet.has(topCubeCoordinates.join(",")) &&
+          isNextPosition(currentNode, coord)
+        );
+      });
+
+      neighbors.forEach(neighbor => {
+        if (!visited.has(JSON.stringify(neighbor))) {
+          queue.push(neighbor);
+        }
+      });
+    }
+  }
 
   const nodesArray = Array.from(graph.nodes.keys());
-
   for (let i = 0; i < nodesArray.length; i++) {
     const nodeA = JSON.parse(nodesArray[i]);
 
@@ -49,13 +72,13 @@ export function connectEdge(path, linkEdges, coordinates) {
   const { pointA: edgeFromPointA, pointB: edgeFromPointB } = edgeFrom;
   const { pointA: edgeToPointA, pointB: edgeToPointB } = edgeTo;
 
-  const edgeFromCoordinates = edgeFromPointA.map((coord, i) =>
+  let edgeFromCoordinates = edgeFromPointA.map((coord, i) =>
     edgeFromPointA[i] !== edgeFromPointB[i]
       ? (edgeFromPointA[i] + edgeFromPointB[i]) / 2
       : edgeFromPointA[i] - 0.5
   );
 
-  const edgeToCoordinates = edgeToPointA.map((coord, i) => {
+  let edgeToCoordinates = edgeToPointA.map((coord, i) => {
     if (edgeToPointA[i] !== edgeToPointB[i]) {
       return (edgeToPointA[i] + edgeToPointB[i]) / 2;
     }
@@ -64,6 +87,11 @@ export function connectEdge(path, linkEdges, coordinates) {
     }
     return edgeToPointA[i] + 0.5;
   });
+
+  if (linkEdges.id === "stageOne-linkEdge-2") {
+    edgeFromCoordinates = [1, 5.5, 0];
+    edgeToCoordinates = [3, 5.5, 0];
+  }
 
   const targetY = path.contains(edgeFromCoordinates)
     ? edgeToCoordinates[1]

@@ -20,6 +20,7 @@ import AutoSnap from "../../utils/AutoSnap";
 import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
 import GameMenu from "../menus/GameMenu";
 import BackgroundMusic from "../music/BackgroundMusic";
+import { setDeparture, setArrival } from "../../redux/stageSlice";
 
 export default function StageOne({
   isBGMOn,
@@ -35,6 +36,8 @@ export default function StageOne({
 
   useEffect(() => {
     dispatch(setCurrentCoordinates(stageOneCoordinates.departure));
+    dispatch(setDeparture(stageOneCoordinates.departure));
+    dispatch(setArrival(stageOneCoordinates.arrival));
   }, []);
 
   return (

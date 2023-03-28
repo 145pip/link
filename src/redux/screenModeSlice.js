@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { SCREEN_MODE } from "../utils/constants";
 
 const screenModeSlice = createSlice({
   name: "screenMode",
   initialState: {
-    mode: "Main",
+    mode: SCREEN_MODE.MAIN,
   },
   reducers: {
     setMode: (state, action) => {

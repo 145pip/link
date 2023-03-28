@@ -9,7 +9,7 @@ import StageFour from "./StageFour";
 import StageFive from "./StageFive";
 
 export default function GameStage() {
-  const stageLevel = useSelector(state => state.stageLevel.level);
+  const stageLevel = useSelector(state => state.stage.level);
   const [isBGMOn, setIsBGMOn] = useState(true);
   const [isSoundEffectOn, setIsSouncEffectOn] = useState(true);
 
