@@ -11,15 +11,19 @@ import stageTwoCoordinates from "../../data/stageTwoCoordinates.json";
 import CubeElement from "../objects/CubeElement";
 
 import Player from "../objects/Player";
-import Hedgehog from "../objects/Hedgehog";
 import LocationMarker from "../objects/LocationMarker";
 import LocationPointer from "../objects/LocationPointer";
+import Starfish from "../objects/Starfish";
+import StarfishOnSand from "../objects/StarfishOnSand";
+import SeaUrchin from "../objects/SeaUrchin";
+import StageGuide from "../objects/StageGuide";
 import usePath from "../../hooks/usePath";
 import LinkEdge from "../objects/LinkEdge";
 import AutoSnap from "../../utils/AutoSnap";
-import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
 import GameMenu from "../menus/GameMenu";
 import BackgroundMusic from "../music/BackgroundMusic";
+import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
+import { setDeparture, setArrival } from "../../redux/stageSlice";
 
 export default function StageTwo() {
   const dispatch = useDispatch();
@@ -30,6 +34,8 @@ export default function StageTwo() {
 
   useEffect(() => {
     dispatch(setCurrentCoordinates(stageTwoCoordinates.departure));
+    dispatch(setDeparture(stageTwoCoordinates.departure));
+    dispatch(setArrival(stageTwoCoordinates.arrival));
   }, []);
 
   return (
@@ -37,11 +43,12 @@ export default function StageTwo() {
       <Canvas>
         <OrthographicCamera
           makeDefault
-          position={[50, 50, 50]}
+          position={[0, 50, 0]}
           fov={50}
           near={0.01}
           far={1000}
           zoom={80}
+          rotation={[0, 0, 0]}
         />
         <color attach="background" args={["#7478d1"]} />
         <ambientLight />
@@ -69,12 +76,22 @@ export default function StageTwo() {
           rotation={[0, 1.5 * Math.PI, 0]}
           path={path}
         />
-        <Hedgehog position={[3, 5.4, 4]} scale={8} />
-        <Hedgehog position={[4, 5.4, 3]} scale={8} />
-        <Hedgehog position={[4, 5.4, 4]} scale={8} />
-        <Hedgehog position={[4, 5.4, 5]} scale={8} />
-        <Hedgehog position={[5, 5.4, 4]} scale={8} />
-        <Hedgehog position={[3, 4.4, 5]} scale={8} />
+        <StarfishOnSand position={[4, 5.1, 4]} scale={0.18} />
+        <StarfishOnSand position={[3, 4.1, 5]} scale={0.18} />
+        <Starfish position={[-4, 0.1, 3.2]} scale={0.5} />
+        <SeaUrchin position={[3, 5.4, 4]} scale={8} />
+        <SeaUrchin position={[4, 5.4, 3]} scale={8} />
+        <SeaUrchin position={[4, 5.4, 5]} scale={8} />
+        <SeaUrchin position={[5, 5.4, 4]} scale={8} />
+        <SeaUrchin position={[-6, 0.4, 3]} scale={8} />
+        <SeaUrchin position={[-7, 0.4, 3.3]} scale={8} />
+        <SeaUrchin position={[-6.5, 0.4, 3.9]} scale={8} />
+        <SeaUrchin position={[-6.5, 1, 3.3]} scale={8} />
+        <StageGuide
+          position={[-5, 0, 0]}
+          rotation={[1.5 * Math.PI, 0, 0]}
+          scale={[8, 6, 0.1]}
+        />
         <LocationPointer
           position={stageTwoCoordinates.arrival}
           color="indianred"
