@@ -19,6 +19,7 @@ import SkipMenu from "../menus/SkipMenu";
 import usePath from "../../hooks/usePath";
 import TutorialGuide from "../objects/TutorialGuide";
 import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
+import { setDeparture, setArrival } from "../../redux/stageSlice";
 
 export default function StageZero({
   isBGMOn,
@@ -35,6 +36,8 @@ export default function StageZero({
 
   useEffect(() => {
     dispatch(setCurrentCoordinates(stageZeroCoordinates.departure));
+    dispatch(setDeparture(stageZeroCoordinates.departure));
+    dispatch(setArrival(stageZeroCoordinates.arrival));
   }, []);
 
   return (

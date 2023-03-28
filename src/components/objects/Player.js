@@ -4,7 +4,7 @@ import * as THREE from "three";
 import PropTypes from "prop-types";
 
 import useKeyControl from "../../hooks/useKeyControl";
-import { PLAYER_MOTIONS, PLAYER_HEIGHT } from "../../utils/constants";
+import { PLAYER_MOTIONS } from "../../utils/constants";
 
 export default function Player({ position, rotation, path, isSoundEffectOn }) {
   const textureLoader = new THREE.TextureLoader();
@@ -22,11 +22,7 @@ export default function Player({ position, rotation, path, isSoundEffectOn }) {
   const { actions, names } = useAnimations(animations, group);
 
   const [motionIndex, setMotionIndex] = useState(PLAYER_MOTIONS.STANDING);
-  const [playerPosition, setPlayerPosition] = useState([
-    position[0],
-    position[1] + PLAYER_HEIGHT,
-    position[2],
-  ]);
+  const [playerPosition, setPlayerPosition] = useState(position);
   const [playerRotation, setPlayerRotation] = useState(rotation);
   const [playerFace, setPlayerFace] = useState(playerFaces[0]);
 

@@ -4,7 +4,7 @@ import { Image } from "@react-three/drei";
 import { usePlane } from "@react-three/cannon";
 import PropTypes from "prop-types";
 
-import { setLevel } from "../../redux/stageLevelSlice";
+import { setLevel } from "../../redux/stageSlice";
 import { setMode } from "../../redux/screenModeSlice";
 
 export default function StageControlBoxSurface({

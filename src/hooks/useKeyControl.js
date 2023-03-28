@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentCoordinates } from "../redux/currentCoordinatesSlice";
 import singleStepSound from "../assets/music/singleStepSound.mp3";
 import { PLAYER_MOTIONS, PLAYER_HEIGHT } from "../utils/constants";
+import { setLevelUp } from "../redux/stageSlice";
 
 const ROTATION_INCREMENT = (5 * Math.PI) / 180;
 const KEY_EVENT = {
@@ -29,6 +30,8 @@ export default function useKeyControl(
   isSoundEffectOn
 ) {
   const dispatch = useDispatch();
+  const [isFinished, setIsFinished] = useState(false);
+  const arrival = useSelector(state => state.stage.arrival);
   const [rotationCount, setRotationCount] = useState(0);
   const listener = new THREE.AudioListener();
   const audioLoader = new THREE.AudioLoader();
@@ -36,6 +39,7 @@ export default function useKeyControl(
     state => state.currentCoordinates.coordinates
   );
   const isLink = useSelector(state => state.edgeLink.isLinked);
+  const linkEdge = useSelector(state => state.edgeLink.linkEdge);
   const edgeFromCoordinates = useSelector(
     state => state.edgeLink.edgeFromCoordinates
   );
@@ -57,9 +61,36 @@ export default function useKeyControl(
     });
   };
 
+  const crouchPlayer = trigger => {
+    const duration = 1000;
+    const steps = Math.round(duration / 40);
+
+    setMotionIndex(PLAYER_MOTIONS.CROUCHING);
+    let y;
+
+    if (trigger === "start") {
+      setTimeout(() => setMotionIndex(PLAYER_MOTIONS.STANDING), 1100);
+      y = playerPosition[1] + PLAYER_HEIGHT;
+    } else {
+      setTimeout(() => setIsFinished(true), 2000);
+      y = playerPosition[1] - 1.5;
+    }
+
+    for (let i = 0; i <= steps; i++) {
+      setTimeout(() => {
+        const t = i / steps;
+        setPlayerPosition([
+          playerPosition[0],
+          lerp(playerPosition[1], y, t),
+          playerPosition[2],
+        ]);
+      }, i * 50);
+    }
+  };
+
   const movePlayer = direction => {
     const currentDirection = HEAD_DIRECTION[rotationCount % 4];
-    const nextPlayerPosition = [
+    let nextPlayerPosition = [
       playerPosition[0] + direction * currentDirection.x,
       playerPosition[1],
       playerPosition[2] + direction * currentDirection.z,
@@ -70,13 +101,34 @@ export default function useKeyControl(
       nextPlayerPosition[2],
     ];
 
-    if (
-      isLink &&
-      currentCoordinates.every(
-        (coordinate, index) => edgeToCoordinates[index] === coordinate
-      )
-    ) {
-      nextCoordinates = edgeFromCoordinates;
+    if (isLink) {
+      const isEdgeFromCoord = currentCoordinates.every(
+        (coord, index) => coord === edgeFromCoordinates[index]
+      );
+      const isEdgeToCoord = currentCoordinates.every(
+        (coord, index) => coord === edgeToCoordinates[index]
+      );
+
+      const { edgeFrom } = linkEdge;
+      const { pointA: edgeFromPointA, pointB: edgeFromPointB } = edgeFrom;
+
+      const axis = edgeFromPointA[0] === edgeFromPointB[0] ? "x" : "z";
+
+      if (isEdgeFromCoord && currentDirection[axis] !== 0) {
+        nextCoordinates = edgeToCoordinates;
+        nextPlayerPosition = [
+          edgeToCoordinates[0],
+          edgeToCoordinates[1] + PLAYER_HEIGHT,
+          edgeToCoordinates[2],
+        ];
+      } else if (isEdgeToCoord && currentDirection[axis] !== 0) {
+        nextCoordinates = edgeFromCoordinates;
+        nextPlayerPosition = [
+          edgeFromCoordinates[0],
+          edgeFromCoordinates[1] + PLAYER_HEIGHT,
+          edgeFromCoordinates[2],
+        ];
+      }
     }
 
     if (!path.isAdjacent(currentCoordinates, nextCoordinates)) {
@@ -99,7 +151,7 @@ export default function useKeyControl(
         const t = i / steps;
         setPlayerPosition([
           lerp(playerPosition[0], nextPlayerPosition[0], t),
-          playerPosition[1],
+          lerp(playerPosition[1], nextPlayerPosition[1], t),
           lerp(playerPosition[2], nextPlayerPosition[2], t),
         ]);
       }, i * 25);
@@ -147,4 +199,26 @@ export default function useKeyControl(
       window.removeEventListener("keyup", handleKeyUp);
     };
   }, [rotationCount, playerPosition, isSoundEffectOn]);
+
+  useEffect(() => {
+    crouchPlayer("start");
+  }, []);
+
+  useEffect(() => {
+    if (isFinished) {
+      dispatch(setLevelUp());
+    }
+  }, [isFinished]);
+
+  useEffect(() => {
+    if (
+      playerPosition.every((coord, index) => {
+        if (index === 1) return coord === arrival[index] + PLAYER_HEIGHT;
+
+        return coord === arrival[index];
+      })
+    ) {
+      crouchPlayer("finish");
+    }
+  }, [playerPosition]);
 }
