@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const stageSlice = createSlice({
   name: "stage",
   initialState: {
-    level: 0,
+    level: localStorage.getItem("stageLevel")
+      ? parseInt(localStorage.getItem("stageLevel"), 10)
+      : 0,
     departure: null,
     arrival: null,
   },
