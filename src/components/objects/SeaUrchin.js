@@ -1,8 +1,8 @@
 import { useGLTF } from "@react-three/drei";
 import PropTypes from "prop-types";
 
-export default function Hedgehog({ position, scale }) {
-  const { nodes, materials } = useGLTF("/assets/glb/hedge-hog.glb");
+export default function SeaUrchin({ position, scale }) {
+  const { nodes, materials } = useGLTF("/assets/glb/sea-urchin.glb");
 
   return (
     <group dispose={null}>
@@ -21,9 +21,9 @@ export default function Hedgehog({ position, scale }) {
   );
 }
 
-useGLTF.preload("/assets/glb/hedge-hog.glb");
+useGLTF.preload("/assets/glb/sea-urchin.glb");
 
-Hedgehog.propTypes = {
+SeaUrchin.propTypes = {
   position: PropTypes.arrayOf(PropTypes.number),
   scale: PropTypes.number,
 }.isRequired;
