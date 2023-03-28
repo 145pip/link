@@ -15,23 +15,25 @@ export default function TutorialGuide({
   );
   const textureLoader = new THREE.TextureLoader();
   const missions = {
-    mission1: textureLoader.load("/assets/image/tutorial/mission1.png"),
-    mission2: textureLoader.load("/assets/image/tutorial/mission2.png"),
-    mission3: textureLoader.load("/assets/image/tutorial/mission3.png"),
-    mission4: textureLoader.load("/assets/image/tutorial/mission4.png"),
-    mission5: textureLoader.load("/assets/image/tutorial/mission5.png"),
+    mission1: textureLoader.load("/assets/image/tutorial-guide/mission1.png"),
+    mission2: textureLoader.load("/assets/image/tutorial-guide/mission2.png"),
+    mission3: textureLoader.load("/assets/image/tutorial-guide/mission3.png"),
+    mission4: textureLoader.load("/assets/image/tutorial-guide/mission4.png"),
+    mission5: textureLoader.load("/assets/image/tutorial-guide/mission5.png"),
   };
 
   const keydownGuides = {
-    key: textureLoader.load("/assets/image/tutorial/key.png"),
-    keyArrowUp: textureLoader.load("/assets/image/tutorial/key-up.png"),
-    keyArrowLeft: textureLoader.load("/assets/image/tutorial/key-left.png"),
+    key: textureLoader.load("/assets/image/tutorial-guide/key.png"),
+    keyArrowUp: textureLoader.load("/assets/image/tutorial-guide/key-up.png"),
+    keyArrowLeft: textureLoader.load(
+      "/assets/image/tutorial-guide/key-left.png"
+    ),
   };
 
   const clickGuides = {
-    mouse: textureLoader.load("/assets/image/tutorial/mouse.png"),
+    mouse: textureLoader.load("/assets/image/tutorial-guide/mouse.png"),
     mouseLeft: textureLoader.load(
-      "/assets/image/tutorial/mouse-left-click.png"
+      "/assets/image/tutorial-guide/mouse-left-click.png"
     ),
   };
 
