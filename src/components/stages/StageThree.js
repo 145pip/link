@@ -11,15 +11,20 @@ import stageThreeCoordinates from "../../data/stageThreeCoordinates.json";
 import CubeElement from "../objects/CubeElement";
 
 import Player from "../objects/Player";
-import Hedgehog from "../objects/Hedgehog";
 import LocationMarker from "../objects/LocationMarker";
 import LocationPointer from "../objects/LocationPointer";
+import Starfish from "../objects/Starfish";
+import StarfishOnSand from "../objects/StarfishOnSand";
+import SeaUrchin from "../objects/SeaUrchin";
+import Turtle from "../objects/Turtle";
+import StageGuide from "../objects/StageGuide";
 import usePath from "../../hooks/usePath";
 import LinkEdge from "../objects/LinkEdge";
 import AutoSnap from "../../utils/AutoSnap";
-import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
 import GameMenu from "../menus/GameMenu";
 import BackgroundMusic from "../music/BackgroundMusic";
+import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
+import { setDeparture, setArrival } from "../../redux/stageSlice";
 
 export default function StageThree() {
   const currentCoordinates = useSelector(
@@ -37,14 +42,16 @@ export default function StageThree() {
 
   useEffect(() => {
     dispatch(setCurrentCoordinates(stageThreeCoordinates.departure));
+    dispatch(setDeparture(stageThreeCoordinates.departure));
+    dispatch(setArrival(stageThreeCoordinates.arrival));
   }, []);
 
   useEffect(() => {
     if (
       isHiddenCubesVisible === false &&
-      currentCoordinates[0] === 2 &&
-      currentCoordinates[1] === 0.5 &&
-      currentCoordinates[2] === 0
+      currentCoordinates?.[0] === 2 &&
+      currentCoordinates?.[1] === 0.5 &&
+      currentCoordinates?.[2] === 0
     ) {
       setTimeout(() => {
         setIsHiddenCubesVisible(true);
@@ -98,10 +105,23 @@ export default function StageThree() {
           rotation={[0, 1.5 * Math.PI, 0]}
           path={path}
         />
-        <Hedgehog position={[1, 2.4, 0]} scale={8} />
-        <Hedgehog position={[1, 2.4, 1]} scale={8} />
-        <Hedgehog position={[5, 2.4, 1]} scale={8} />
-        <Hedgehog position={[5, 2.4, 2]} scale={8} />
+        <StarfishOnSand position={[1, 2.1, 1]} scale={0.18} />
+        <StarfishOnSand position={[5, 2.1, 2]} scale={0.18} />
+        <Starfish position={[-5.3, 0.1, 2]} scale={0.2} />
+        <Starfish position={[-4.3, 0.1, 2]} scale={0.2} />
+        <SeaUrchin position={[1, 2.4, 0]} scale={8} />
+        <SeaUrchin position={[-5.3, 0.4, 3.1]} scale={8} />
+        <Turtle position={[5, 2.4, 0.9]} rotation={[0, 0, 0]} scale={0.5} />
+        <Turtle
+          position={[-7.3, 0.4, 3.1]}
+          rotation={[0, 0.5 * Math.PI, 0]}
+          scale={1}
+        />
+        <StageGuide
+          position={[-5, 0, 0]}
+          rotation={[1.5 * Math.PI, 0, 0]}
+          scale={[8, 6, 0.1]}
+        />
         <LocationPointer
           position={stageThreeCoordinates.arrival}
           color="indianred"
