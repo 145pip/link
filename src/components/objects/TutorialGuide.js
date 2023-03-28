@@ -90,7 +90,7 @@ export default function TutorialGuide({
       setCurrentMission(missions.mission5);
       setCurrentKeydown(keydownGuides.keyArrowUp);
     }
-  }, [currentPosition]);
+  }, [currentPosition, isLinked]);
 
   return (
     <>

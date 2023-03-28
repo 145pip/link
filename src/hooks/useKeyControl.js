@@ -6,6 +6,7 @@ import { setCurrentCoordinates } from "../redux/currentCoordinatesSlice";
 import singleStepSound from "../assets/music/singleStepSound.mp3";
 import { PLAYER_MOTIONS, PLAYER_HEIGHT } from "../utils/constants";
 import { setLevelUp } from "../redux/stageSlice";
+import { setInit } from "../redux/edgeLinkSlice";
 
 const ROTATION_INCREMENT = (5 * Math.PI) / 180;
 const KEY_EVENT = {
@@ -207,6 +208,8 @@ export default function useKeyControl(
   useEffect(() => {
     if (isFinished) {
       dispatch(setLevelUp());
+      dispatch(setCurrentCoordinates(null));
+      dispatch(setInit());
     }
   }, [isFinished]);
 

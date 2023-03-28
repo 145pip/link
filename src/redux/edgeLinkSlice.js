@@ -21,6 +21,12 @@ const edgeLinkSlice = createSlice({
     setEdgeToCoordinates: (state, action) => {
       state.edgeToCoordinates = action.payload;
     },
+    setInit: state => {
+      state.isLinked = false;
+      state.linkEdge = null;
+      state.edgeFromCoordinates = null;
+      state.edgeToCoordinates = null;
+    },
   },
 });
 
@@ -29,5 +35,6 @@ export const {
   setLinkEdge,
   setEdgeFromCoordinates,
   setEdgeToCoordinates,
+  setInit,
 } = edgeLinkSlice.actions;
 export default edgeLinkSlice.reducer;
