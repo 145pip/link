@@ -5,8 +5,6 @@ import stage from "./stageSlice";
 import screenMode from "./screenModeSlice";
 import edgeLink from "./edgeLinkSlice";
 import currentCoordinates from "./currentCoordinatesSlice";
-import player from "./playerSlice";
-import sound from "./soundSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,8 +12,6 @@ const store = configureStore({
     screenMode,
     edgeLink,
     currentCoordinates,
-    player,
-    sound,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
 });
