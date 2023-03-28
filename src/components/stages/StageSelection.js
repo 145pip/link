@@ -5,7 +5,7 @@ import {
   ContactShadows,
 } from "@react-three/drei";
 
-import StageControlBox from "../objects/StageControlBox";
+import StageControlBox from "./StageControlBox";
 
 export default function StageSelection() {
   return (

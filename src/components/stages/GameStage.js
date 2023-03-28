@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useState } from "react";
 
 import StageZero from "./StageZero";
 import StageOne from "./StageOne";
@@ -20,6 +20,10 @@ export default function GameStage() {
   const handleToggleAllSoundsButtonClick = () => {
     setIsSouncEffectOn(prevState => !prevState);
   };
+
+  useEffect(() => {
+    localStorage.setItem("stageLevel", stageLevel);
+  }, [stageLevel]);
 
   return (
     <>

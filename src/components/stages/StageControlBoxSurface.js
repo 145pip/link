@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Image } from "@react-three/drei";
 import { usePlane } from "@react-three/cannon";
 import PropTypes from "prop-types";
 
 import { setLevel } from "../../redux/stageSlice";
 import { setMode } from "../../redux/screenModeSlice";
+import { SCREEN_MODE } from "../../utils/constants";
 
 export default function StageControlBoxSurface({
   args,
@@ -23,15 +24,33 @@ export default function StageControlBoxSurface({
     rotation,
   }));
 
+  const currentLevel = useSelector(state => state.stage.level);
+
+  const handleClick = () => {
+    if (level <= currentLevel) {
+      dispatch(setLevel(level));
+      dispatch(setMode(SCREEN_MODE.GAME_STAGE));
+    }
+  };
+
+  const handlePointerOver = () => {
+    if (level <= currentLevel) {
+      setHovered(true);
+    }
+  };
+
+  const handlePointerOut = () => {
+    if (level <= currentLevel) {
+      setHovered(false);
+    }
+  };
+
   return (
     <mesh
       ref={ref}
-      onClick={() => {
-        dispatch(setLevel(level));
-        dispatch(setMode("GameStage"));
-      }}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
+      onClick={handleClick}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
     >
       <planeBufferGeometry args={args} />
       <Image
