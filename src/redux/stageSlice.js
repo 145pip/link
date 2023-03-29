@@ -15,6 +15,7 @@ const stageSlice = createSlice({
     },
     setLevelUp: state => {
       state.level += 1;
+      localStorage.setItem("stageLevel", state.level);
     },
     setDeparture: (state, action) => {
       state.departure = action.payload;

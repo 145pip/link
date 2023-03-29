@@ -4,24 +4,24 @@
 
   "cubes": {
     "positions": [
-      { "id": "stageTwo-cube-1", "coordinate": [4, 0.5, 0] },
-      { "id": "stageTwo-cube-2", "coordinate": [8, 0.5, 4] },
-      { "id": "stageTwo-cube-3", "coordinate": [4, 0.5, 8] },
-      { "id": "stageTwo-cube-4", "coordinate": [0, 0.5, 4] },
-      { "id": "stageTwo-cube-5", "coordinate": [3, 3.5, 3] },
-      { "id": "stageTwo-cube-6", "coordinate": [4, 3.5, 3] },
-      { "id": "stageTwo-cube-7", "coordinate": [5, 3.5, 3] },
-      { "id": "stageTwo-cube-8", "coordinate": [3, 3.5, 4] },
-      { "id": "stageTwo-cube-9", "coordinate": [4, 3.5, 4] },
-      { "id": "stageTwo-cube-10", "coordinate": [5, 3.5, 4] },
-      { "id": "stageTwo-cube-11", "coordinate": [3, 3.5, 5] },
-      { "id": "stageTwo-cube-12", "coordinate": [4, 3.5, 5] },
-      { "id": "stageTwo-cube-13", "coordinate": [5, 3.5, 5] },
-      { "id": "stageTwo-cube-14", "coordinate": [3, 4.5, 4] },
-      { "id": "stageTwo-cube-15", "coordinate": [4, 4.5, 3] },
-      { "id": "stageTwo-cube-16", "coordinate": [4, 4.5, 4] },
-      { "id": "stageTwo-cube-17", "coordinate": [4, 4.5, 5] },
-      { "id": "stageTwo-cube-18", "coordinate": [5, 4.5, 4] }
+      { "id": "stageThree-cube-1", "coordinate": [4, 0.5, 0] },
+      { "id": "stageThree-cube-2", "coordinate": [8, 0.5, 4] },
+      { "id": "stageThree-cube-3", "coordinate": [4, 0.5, 8] },
+      { "id": "stageThree-cube-4", "coordinate": [0, 0.5, 4] },
+      { "id": "stageThree-cube-5", "coordinate": [3, 3.5, 3] },
+      { "id": "stageThree-cube-6", "coordinate": [4, 3.5, 3] },
+      { "id": "stageThree-cube-7", "coordinate": [5, 3.5, 3] },
+      { "id": "stageThree-cube-8", "coordinate": [3, 3.5, 4] },
+      { "id": "stageThree-cube-9", "coordinate": [4, 3.5, 4] },
+      { "id": "stageThree-cube-10", "coordinate": [5, 3.5, 4] },
+      { "id": "stageThree-cube-11", "coordinate": [3, 3.5, 5] },
+      { "id": "stageThree-cube-12", "coordinate": [4, 3.5, 5] },
+      { "id": "stageThree-cube-13", "coordinate": [5, 3.5, 5] },
+      { "id": "stageThree-cube-14", "coordinate": [3, 4.5, 4] },
+      { "id": "stageThree-cube-15", "coordinate": [4, 4.5, 3] },
+      { "id": "stageThree-cube-16", "coordinate": [4, 4.5, 4] },
+      { "id": "stageThree-cube-17", "coordinate": [4, 4.5, 5] },
+      { "id": "stageThree-cube-18", "coordinate": [5, 4.5, 4] }
     ]
   },
   "linkEdges": [
