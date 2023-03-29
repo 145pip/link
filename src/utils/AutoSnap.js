@@ -48,7 +48,12 @@ export default function AutoSnap({
     if (prevInRange.current !== inRange) {
       prevInRange.current = inRange;
       dispatch(setIsLinked(inRange));
-      dispatch(setLinkEdge(linkEdge));
+
+      if (inRange) {
+        dispatch(setLinkEdge(linkEdge));
+      } else {
+        dispatch(setLinkEdge(null));
+      }
     }
   };
 

@@ -15,7 +15,6 @@ export default function usePath(startingCoordinate, coordinates) {
   const currentCoordinates = useSelector(
     state => state.currentCoordinates.coordinates
   );
-  const [currentY, setCurrentY] = useState(startingCoordinate[1]);
 
   useEffect(() => {
     if (isLinked) {
@@ -23,14 +22,10 @@ export default function usePath(startingCoordinate, coordinates) {
       setPath(result.newPath);
       dispatch(setEdgeFromCoordinates(result.edgeFromCoordinates));
       dispatch(setEdgeToCoordinates(result.edgeToCoordinates));
-    } else if (Array.isArray(currentCoordinates)) {
-      const [, y] = currentCoordinates;
-      if (y !== currentY) {
-        setCurrentY(y);
-        setPath(createPath(currentCoordinates, coordinates));
-      }
+    } else if (currentCoordinates) {
+      setPath(createPath(currentCoordinates, coordinates));
     }
-  }, [isLinked]);
+  }, [isLinked, linkEdge]);
 
   return path;
 }
