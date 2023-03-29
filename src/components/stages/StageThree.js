@@ -17,7 +17,6 @@ import StarfishOnSand from "../objects/StarfishOnSand";
 import SeaUrchin from "../objects/SeaUrchin";
 import StageGuide from "../objects/StageGuide";
 import usePath from "../../hooks/usePath";
-import LinkEdge from "../objects/LinkEdge";
 import AutoSnap from "../../utils/AutoSnap";
 import GameMenu from "../menus/GameMenu";
 import BackgroundMusic from "../music/BackgroundMusic";
@@ -99,9 +98,6 @@ export default function StageThree() {
           position={stageThreeCoordinates.arrival}
           rotation={[1.5 * Math.PI, 0, 0]}
         />
-        {stageThreeCoordinates.linkEdges.map(linkEdge => (
-          <LinkEdge key={linkEdge.key} linkEdge={linkEdge} />
-        ))}
         {stageThreeCoordinates.linkEdges.map(linkEdge => (
           <AutoSnap
             key={linkEdge.id}

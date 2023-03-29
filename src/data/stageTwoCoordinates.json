@@ -31,12 +31,12 @@
   },
   "hiddenCubes": {
     "positions": [
-      { "id": "stageThree-invisibleCube-1", "coordinate": [4, 5.5, 9] }
+      { "id": "stageTwo-invisibleCube-1", "coordinate": [4, 5.5, 9] }
     ]
   },
   "linkEdges": [
     {
-      "id": "stageThree-linkEdge-1",
+      "id": "stageTwo-linkEdge-1",
       "edgeFrom": {
         "pointA": [3.5, 6, 8.5],
         "pointB": [4.5, 6, 8.5]
@@ -49,7 +49,7 @@
       "thickness": 3
     },
     {
-      "id": "stageThree-linkEdge-3",
+      "id": "stageTwo-linkEdge-2",
       "edgeFrom": {
         "pointA": [3.5, 6, 8.5],
         "pointB": [4.5, 6, 8.5]
