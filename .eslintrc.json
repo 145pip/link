@@ -5,13 +5,15 @@
     "eslint:recommended",
     "plugin:import/errors",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:jest/recommended"
   ],
-  "plugins": ["react", "prettier", "import"],
+  "plugins": ["react", "prettier", "import", "jest"],
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "parserOptions": {
     "requireConfigFile": false,
