@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Canvas } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -16,20 +16,25 @@ import LocationPointer from "../objects/LocationPointer";
 import Starfish from "../objects/Starfish";
 import StarfishOnSand from "../objects/StarfishOnSand";
 import SeaUrchin from "../objects/SeaUrchin";
+import Turtle from "../objects/Turtle";
 import StageGuide from "../objects/StageGuide";
 import usePath from "../../hooks/usePath";
-import LinkEdge from "../objects/LinkEdge";
 import AutoSnap from "../../utils/AutoSnap";
 import GameMenu from "../menus/GameMenu";
 import BackgroundMusic from "../music/BackgroundMusic";
 import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
 import { setDeparture, setArrival } from "../../redux/stageSlice";
 
-export default function StageTwo() {
-  const dispatch = useDispatch();
-  const coordinates = stageTwoCoordinates.cubes.positions.map(
-    position => position.coordinate
+export default function StageThree() {
+  const currentCoordinates = useSelector(
+    state => state.currentCoordinates.coordinates
   );
+  const [isHiddenCubesVisible, setIsHiddenCubesVisible] = useState(false);
+
+  const dispatch = useDispatch();
+  const coordinates = isHiddenCubesVisible
+    ? stageTwoCoordinates.cubes.positions.map(position => position.coordinate)
+    : stageTwoCoordinates.cubes.positions.map(position => position.coordinate);
   const path = usePath(stageTwoCoordinates.departure, coordinates);
 
   useEffect(() => {
@@ -37,6 +42,19 @@ export default function StageTwo() {
     dispatch(setDeparture(stageTwoCoordinates.departure));
     dispatch(setArrival(stageTwoCoordinates.arrival));
   }, []);
+
+  useEffect(() => {
+    if (
+      isHiddenCubesVisible === false &&
+      currentCoordinates?.[0] === 2 &&
+      currentCoordinates?.[1] === 0.5 &&
+      currentCoordinates?.[2] === 0
+    ) {
+      setTimeout(() => {
+        setIsHiddenCubesVisible(true);
+      }, 1000);
+    }
+  }, [currentCoordinates]);
 
   return (
     <>
@@ -48,7 +66,6 @@ export default function StageTwo() {
           near={0.01}
           far={1000}
           zoom={80}
-          rotation={[0, 0, 0]}
         />
         <color attach="background" args={["#7478d1"]} />
         <ambientLight />
@@ -71,22 +88,30 @@ export default function StageTwo() {
             color="#03a9f4"
           />
         ))}
+        {isHiddenCubesVisible &&
+          stageTwoCoordinates.hiddenCubes.positions.map(position => (
+            <CubeElement
+              key={position.id}
+              position={position.coordinate}
+              scale={0.5}
+              color="#03a9f4"
+            />
+          ))}
         <Player
           position={stageTwoCoordinates.departure}
           rotation={[0, 1.5 * Math.PI, 0]}
           path={path}
         />
-        <StarfishOnSand position={[4, 5.1, 4]} scale={0.18} />
-        <StarfishOnSand position={[3, 4.1, 5]} scale={0.18} />
-        <Starfish position={[-4, 0.1, 3.2]} scale={0.5} />
-        <SeaUrchin position={[3, 5.4, 4]} scale={8} />
-        <SeaUrchin position={[4, 5.4, 3]} scale={8} />
-        <SeaUrchin position={[4, 5.4, 5]} scale={8} />
-        <SeaUrchin position={[5, 5.4, 4]} scale={8} />
-        <SeaUrchin position={[-6, 0.4, 3]} scale={8} />
-        <SeaUrchin position={[-7, 0.4, 3.3]} scale={8} />
-        <SeaUrchin position={[-6.5, 0.4, 3.9]} scale={8} />
-        <SeaUrchin position={[-6.5, 1, 3.3]} scale={8} />
+        <StarfishOnSand position={[1, 2.1, 1]} scale={0.18} />
+        <Starfish position={[-5.3, 0.1, 2]} scale={0.2} />
+        <SeaUrchin position={[1, 2.4, 0]} scale={8} />
+        <SeaUrchin position={[-5.3, 0.4, 3.1]} scale={8} />
+        <Turtle position={[4.5, 2.9, 1.3]} rotation={[0, 0, 0]} scale={1} />
+        <Turtle
+          position={[-7.3, 0.8, 3.1]}
+          rotation={[0, 0.5 * Math.PI, 0]}
+          scale={1}
+        />
         <StageGuide
           position={[-5, 0, 0]}
           rotation={[1.5 * Math.PI, 0, 0]}
@@ -100,16 +125,18 @@ export default function StageTwo() {
           position={stageTwoCoordinates.arrival}
           rotation={[1.5 * Math.PI, 0, 0]}
         />
-        {stageTwoCoordinates.linkEdges.map(linkEdge => (
-          <LinkEdge key={linkEdge.key} linkEdge={linkEdge} />
-        ))}
-        {stageTwoCoordinates.linkEdges.map(linkEdge => (
-          <AutoSnap
-            key={linkEdge.id}
-            linkSensitivity={0.05}
-            linkEdge={linkEdge}
-          />
-        ))}
+        <LocationMarker
+          position={[2, 0.5, 0]}
+          rotation={[1.5 * Math.PI, 0, 0]}
+        />
+        {isHiddenCubesVisible &&
+          stageTwoCoordinates.linkEdges.map(linkEdge => (
+            <AutoSnap
+              key={linkEdge.id}
+              linkSensitivity={0.05}
+              linkEdge={linkEdge}
+            />
+          ))}
         <OrbitControls />
       </Canvas>
       <GameMenu />
