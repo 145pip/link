@@ -10,7 +10,6 @@ import PropTypes from "prop-types";
 
 import stageTwoCoordinates from "../../data/stageTwoCoordinates.json";
 import CubeElement from "../objects/CubeElement";
-
 import Player from "../objects/Player";
 import LocationMarker from "../objects/LocationMarker";
 import LocationPointer from "../objects/LocationPointer";
@@ -32,12 +31,11 @@ export default function StageTwo({
   handleToggleBackgroundSoundButtonClick,
   handleToggleAllSoundsButtonClick,
 }) {
+  const dispatch = useDispatch();
+  const [isHiddenCubesVisible, setIsHiddenCubesVisible] = useState(false);
   const currentCoordinates = useSelector(
     state => state.currentCoordinates.coordinates
   );
-  const [isHiddenCubesVisible, setIsHiddenCubesVisible] = useState(false);
-
-  const dispatch = useDispatch();
   const coordinates = isHiddenCubesVisible
     ? stageTwoCoordinates.cubes.positions.map(position => position.coordinate)
     : stageTwoCoordinates.cubes.positions.map(position => position.coordinate);

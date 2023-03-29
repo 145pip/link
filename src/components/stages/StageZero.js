@@ -27,8 +27,8 @@ export default function StageZero({
   handleToggleBackgroundSoundButtonClick,
   handleToggleAllSoundsButtonClick,
 }) {
-  const [enableCameraRotation, setEnableCameraRotation] = useState(false);
   const dispatch = useDispatch();
+  const [enableCameraRotation, setEnableCameraRotation] = useState(false);
   const coordinates = stageZeroCoordinates.cubes.positions.map(
     position => position.coordinate
   );

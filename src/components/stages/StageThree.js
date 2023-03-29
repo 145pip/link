@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Canvas } from "@react-three/fiber";
 import {
@@ -9,7 +9,6 @@ import {
 
 import stageThreeCoordinates from "../../data/stageThreeCoordinates.json";
 import CubeElement from "../objects/CubeElement";
-
 import Player from "../objects/Player";
 import LocationMarker from "../objects/LocationMarker";
 import LocationPointer from "../objects/LocationPointer";

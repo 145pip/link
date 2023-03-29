@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { useSelector } from "react-redux";
 import { useFrame } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
 
@@ -16,7 +15,9 @@ export default function StageControlBox() {
     ref.current.rotation.z = 0.3 * Math.sin(timeCounter);
   });
 
-  const currentLevel = useSelector(state => state.stage.level);
+  const currentLevel = localStorage.getItem("stageLevel")
+    ? parseInt(localStorage.getItem("stageLevel"), 10)
+    : 0;
 
   const createStageControlBoxSurface = (level, position, rotation) => {
     const defaultImage =

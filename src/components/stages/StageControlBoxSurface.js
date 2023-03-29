@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Image } from "@react-three/drei";
 import { usePlane } from "@react-three/cannon";
 import PropTypes from "prop-types";
@@ -24,7 +24,9 @@ export default function StageControlBoxSurface({
     rotation,
   }));
 
-  const currentLevel = useSelector(state => state.stage.level);
+  const currentLevel = localStorage.getItem("stageLevel")
+    ? parseInt(localStorage.getItem("stageLevel"), 10)
+    : 0;
 
   const handleClick = () => {
     if (level <= currentLevel) {
