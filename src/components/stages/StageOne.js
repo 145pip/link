@@ -78,6 +78,7 @@ export default function StageOne({
           position={stageOneCoordinates.departure}
           rotation={[0, 1.5 * Math.PI, 0]}
           path={path}
+          isSoundEffectOn={isSoundEffectOn}
         />
         <StarfishOnSand position={[4, 8.1, 4]} scale={0.18} />
         <Starfish position={[-4.7, 0.1, 2.4]} scale={0.5} />
@@ -96,6 +97,7 @@ export default function StageOne({
             key={linkEdge.id}
             linkSensitivity={0.05}
             linkEdge={linkEdge}
+            isSoundEffectOn={isSoundEffectOn}
           />
         ))}
         <OrbitControls />

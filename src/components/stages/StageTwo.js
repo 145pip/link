@@ -6,6 +6,7 @@ import {
   OrthographicCamera,
   ContactShadows,
 } from "@react-three/drei";
+import PropTypes from "prop-types";
 
 import stageTwoCoordinates from "../../data/stageTwoCoordinates.json";
 import CubeElement from "../objects/CubeElement";
@@ -25,7 +26,12 @@ import BackgroundMusic from "../music/BackgroundMusic";
 import { setCurrentCoordinates } from "../../redux/currentCoordinatesSlice";
 import { setDeparture, setArrival } from "../../redux/stageSlice";
 
-export default function StageThree() {
+export default function StageTwo({
+  isBGMOn,
+  isSoundEffectOn,
+  handleToggleBackgroundSoundButtonClick,
+  handleToggleAllSoundsButtonClick,
+}) {
   const currentCoordinates = useSelector(
     state => state.currentCoordinates.coordinates
   );
@@ -101,6 +107,7 @@ export default function StageThree() {
           position={stageTwoCoordinates.departure}
           rotation={[0, 1.5 * Math.PI, 0]}
           path={path}
+          isSoundEffectOn={isSoundEffectOn}
         />
         <StarfishOnSand position={[1, 2.1, 1]} scale={0.18} />
         <Starfish position={[-5.3, 0.1, 2]} scale={0.2} />
@@ -135,12 +142,27 @@ export default function StageThree() {
               key={linkEdge.id}
               linkSensitivity={0.05}
               linkEdge={linkEdge}
+              isSoundEffectOn={isSoundEffectOn}
             />
           ))}
         <OrbitControls />
       </Canvas>
       <GameMenu />
-      <BackgroundMusic />
+      <BackgroundMusic
+        isBGMOn={isBGMOn}
+        isSoundEffectOn={isSoundEffectOn}
+        handleToggleBackgroundSoundButtonClick={
+          handleToggleBackgroundSoundButtonClick
+        }
+        handleToggleAllSoundsButtonClick={handleToggleAllSoundsButtonClick}
+      />
     </>
   );
 }
+
+StageTwo.propTypes = {
+  isBGMOn: PropTypes.bool.isRequired,
+  isSoundEffectOn: PropTypes.bool.isRequired,
+  handleToggleBackgroundSoundButtonClick: PropTypes.func.isRequired,
+  handleToggleAllSoundsButtonClick: PropTypes.func.isRequired,
+};

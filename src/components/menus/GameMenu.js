@@ -41,10 +41,10 @@ const commonStyles = css`
 
 const ResetButton = styled(Reload)`
   ${commonStyles};
-  right: 35vw;
+  right: 26vw;
 `;
 
 const StageSelectionButton = styled(StageSelection)`
-  right: 28vw;
+  right: 21vw;
   ${commonStyles};
 `;

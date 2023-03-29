@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setCurrentCoordinates } from "../redux/currentCoordinatesSlice";
 import singleStepSound from "../assets/music/singleStepSound.mp3";
+import crouchingSound from "../assets/music/crouchingSound.mp3";
 import { PLAYER_MOTIONS, PLAYER_HEIGHT } from "../utils/constants";
 import { setLevelUp } from "../redux/stageSlice";
 import { setInit } from "../redux/edgeLinkSlice";
@@ -62,12 +63,26 @@ export default function useKeyControl(
     });
   };
 
+  const crouchingSoundEffect = () => {
+    audioLoader.load(crouchingSound, buffer => {
+      const sound = new THREE.Audio(listener);
+      sound.setBuffer(buffer);
+      sound.setLoop(false);
+      sound.setVolume(0.2);
+      sound.play();
+    });
+  };
+
   const crouchPlayer = trigger => {
     const duration = 1000;
     const steps = Math.round(duration / 40);
 
     setMotionIndex(PLAYER_MOTIONS.CROUCHING);
     let y;
+
+    if (isSoundEffectOn) {
+      crouchingSoundEffect();
+    }
 
     if (trigger === "start") {
       setTimeout(() => setMotionIndex(PLAYER_MOTIONS.STANDING), 1100);

@@ -17,7 +17,7 @@ export default function SkipMenu() {
 const SkipButton = styled(SkipArrow)`
   z-index: 999;
   position: absolute;
-  bottom: 15vh;
-  right: 12vw;
+  bottom: 10vh;
+  right: 5vw;
   cursor: pointer;
 `;

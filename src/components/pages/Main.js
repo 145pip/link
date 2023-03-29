@@ -53,6 +53,7 @@ const GameStartButton = styled.button`
   left: 40vw;
   font-size: 20px;
   background-color: rgba(51, 153, 255, 20%);
+  border-radius: 2%;
   color: black;
   border: none;
   z-index: 999;
