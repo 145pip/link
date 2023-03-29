@@ -10,6 +10,7 @@ import StageFive from "./StageFive";
 
 export default function GameStage() {
   const stageLevel = useSelector(state => state.stage.level);
+
   const [isBGMOn, setIsBGMOn] = useState(true);
   const [isSoundEffectOn, setIsSouncEffectOn] = useState(true);
 
@@ -51,7 +52,9 @@ export default function GameStage() {
         <StageTwo
           isBGMOn={isBGMOn}
           isSoundEffectOn={isSoundEffectOn}
-          handleToggleSoundButtonClick={handleToggleBackgroundSoundButtonClick}
+          handleToggleBackgroundSoundButtonClick={
+            handleToggleBackgroundSoundButtonClick
+          }
           handleToggleAllSoundsButtonClick={handleToggleAllSoundsButtonClick}
         />
       )}

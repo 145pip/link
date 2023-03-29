@@ -5,7 +5,7 @@ import * as THREE from "three";
 
 import { ReactComponent as Sound } from "../../assets/icon/Sound.svg";
 import { ReactComponent as SoundOff } from "../../assets/icon/SoundOff.svg";
-import stageZeroBGM from "../../assets/music/stageZeroBGM.mp3";
+import stageBGM from "../../assets/music/stageBGM.mp3";
 
 export default function BgmSoundButton({
   isBGMOn,
@@ -16,7 +16,7 @@ export default function BgmSoundButton({
   const audioLoader = new THREE.AudioLoader();
 
   const musicPlay = () => {
-    audioLoader.load(stageZeroBGM, buffer => {
+    audioLoader.load(stageBGM, buffer => {
       sound.setBuffer(buffer);
       sound.setLoop(true);
       sound.setVolume(0.1);
@@ -58,7 +58,7 @@ const BgSoundOnButton = styled(Sound)`
   position: absolute;
   cursor: pointer;
   top: 7.7vh;
-  right: 20vw;
+  right: 15vw;
 `;
 
 const BgSoundOffButton = styled(SoundOff)`
@@ -66,7 +66,7 @@ const BgSoundOffButton = styled(SoundOff)`
   position: absolute;
   cursor: pointer;
   top: 7.7vh;
-  right: 20vw;
+  right: 15vw;
 `;
 
 BgmSoundButton.propTypes = {

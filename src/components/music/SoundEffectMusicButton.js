@@ -26,16 +26,16 @@ const SoundEffectOnButton = styled(OnEqualizer)`
   z-index: 999;
   position: absolute;
   cursor: pointer;
-  top: 9vh;
-  right: 13vw;
+  top: 9.5vh;
+  right: 10vw;
 `;
 
 const SoundEffecOffButton = styled(OffEqualizer)`
   z-index: 999;
   position: absolute;
   cursor: pointer;
-  top: 9vh;
-  right: 13vw;
+  top: 9.5vh;
+  right: 10vw;
 `;
 
 SoundEffectMusicButton.propTypes = {
